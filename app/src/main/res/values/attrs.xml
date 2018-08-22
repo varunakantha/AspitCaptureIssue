@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomActionBar">
+        <attr name="main_text" format="string"/>
+        <attr name="sub_title" format="string"/>
+        <attr name="bar_bg_color" format="color"/>
+    </declare-styleable>
+</resources>
