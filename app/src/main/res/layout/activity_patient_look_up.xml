@@ -11,7 +11,10 @@
     <no.aspit.aspitcapture.common.CustomActionBar
         android:id="@+id/custom_action_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:main_text="Harald Longnecker"
+        app:bar_bg_color="@android:color/transparent"
+        app:pipe_visibility="GONE"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
