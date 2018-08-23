@@ -8,4 +8,46 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="open_sans_bold_32_black">
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="open_sans_semibold_15_black">
+        <item name="android:fontFamily">@font/open_sans_semi_bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="open_sans_light_15_gray">
+        <item name="android:fontFamily">@font/open_sans_light</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="open_sans_regular_12_dark_ash">
+        <item name="android:fontFamily">@font/open_sans_regular</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/dark_ash</item>
+    </style>
+
+    <style name="open_sans_light_22_gray">
+        <item name="android:fontFamily">@font/open_sans_light</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="open_sans_semibold_24_black">
+        <item name="android:fontFamily">@font/open_sans_semi_bold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="open_sans_light_12_gray">
+        <item name="android:fontFamily">@font/open_sans_semi_bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
 </resources>
