@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AspitCapture</string>
+    <string name="image_details">Image Details</string>
+    <string name="title">Title</string>
+    <string name="comment">Comment</string>
+    <string name="confirm">Confirm</string>
 </resources>
