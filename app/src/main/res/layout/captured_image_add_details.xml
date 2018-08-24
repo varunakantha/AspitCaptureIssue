@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/captured_imageView"
+            android:id="@+id/capturedImageView"
             android:layout_width="300dp"
             android:layout_height="200dp"
             android:layout_marginStart="8dp"
@@ -40,26 +40,26 @@
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/image_title_textView"
+            android:id="@+id/imageFileNameTextView"
+            style="@style/open_sans_semibold_15_black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/open_sans_semi_bold"
             android:text="IMG 024.jpg"
             android:textAlignment="viewStart"
             android:textColor="@color/black"
-            style="@style/open_sans_semibold_15_black"
-            app:layout_constraintStart_toStartOf="@+id/captured_imageView"
-            app:layout_constraintTop_toBottomOf="@+id/captured_imageView"
+            app:layout_constraintStart_toStartOf="@+id/capturedImageView"
+            app:layout_constraintTop_toBottomOf="@+id/capturedImageView"
             tools:ignore="HardcodedText" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_lock_black_24dp"
-            app:layout_constraintBottom_toBottomOf="@+id/image_title_textView"
-            app:layout_constraintEnd_toEndOf="@+id/captured_imageView"
-            app:layout_constraintTop_toTopOf="@+id/image_title_textView"
+            app:layout_constraintBottom_toBottomOf="@+id/imageFileNameTextView"
+            app:layout_constraintEnd_toEndOf="@+id/capturedImageView"
+            app:layout_constraintTop_toTopOf="@+id/imageFileNameTextView"
             tools:ignore="ContentDescription" />
 
         <TextView
@@ -67,16 +67,17 @@
             style="@style/open_sans_light_12_gray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:text="@string/title"
-            app:layout_constraintStart_toStartOf="@+id/image_title_textView"
-            app:layout_constraintTop_toBottomOf="@+id/image_title_textView" />
+            app:layout_constraintStart_toStartOf="@+id/imageFileNameTextView"
+            app:layout_constraintTop_toBottomOf="@+id/imageFileNameTextView" />
 
         <EditText
-            android:id="@+id/image_title_editText"
+            android:id="@+id/imageTitleEditText"
+            style="@style/open_sans_light_12_gray"
             android:layout_width="300dp"
             android:layout_height="30dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/details_add_background"
             android:ems="10"
             android:hint="@string/title"
@@ -84,9 +85,8 @@
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
             android:singleLine="true"
-            style="@style/open_sans_light_12_gray"
-            app:layout_constraintEnd_toEndOf="@+id/captured_imageView"
-            app:layout_constraintStart_toStartOf="@+id/captured_imageView"
+            app:layout_constraintEnd_toEndOf="@+id/capturedImageView"
+            app:layout_constraintStart_toStartOf="@+id/capturedImageView"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <TextView
@@ -94,16 +94,17 @@
             style="@style/open_sans_light_15_gray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:text="@string/comment"
-            app:layout_constraintStart_toStartOf="@+id/captured_imageView"
-            app:layout_constraintTop_toBottomOf="@+id/image_title_editText" />
+            app:layout_constraintStart_toStartOf="@+id/capturedImageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageTitleEditText" />
 
         <EditText
-            android:id="@+id/image_comment_editText"
+            android:id="@+id/imageCommentEditText"
+            style="@style/open_sans_light_15_gray"
             android:layout_width="300dp"
             android:layout_height="100dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/details_add_background"
             android:ems="10"
             android:gravity="top"
@@ -113,13 +114,12 @@
             android:paddingRight="4dp"
             android:scrollbars="vertical"
             android:singleLine="false"
-            style="@style/open_sans_light_15_gray"
-            app:layout_constraintEnd_toEndOf="@+id/image_title_editText"
-            app:layout_constraintStart_toStartOf="@+id/captured_imageView"
+            app:layout_constraintEnd_toEndOf="@+id/imageTitleEditText"
+            app:layout_constraintStart_toStartOf="@+id/capturedImageView"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
         <Button
-            android:id="@+id/image_details_confirm_button"
+            android:id="@+id/imageDetailsConfirmButton"
             style="@style/open_sans_semibold_24_black"
             android:layout_width="0dp"
             android:layout_height="60dp"
@@ -130,9 +130,9 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/image_comment_editText"
-            app:layout_constraintStart_toStartOf="@+id/captured_imageView"
-            app:layout_constraintTop_toBottomOf="@+id/image_comment_editText" />
+            app:layout_constraintEnd_toEndOf="@+id/imageCommentEditText"
+            app:layout_constraintStart_toStartOf="@+id/capturedImageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageCommentEditText" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
