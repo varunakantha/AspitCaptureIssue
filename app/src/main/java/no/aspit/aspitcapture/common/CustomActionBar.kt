@@ -6,11 +6,12 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
-import android.widget.Toast
 import kotlinx.android.synthetic.main.custom_action_bar.view.*
 import no.aspit.aspitcapture.R
 
 class CustomActionBar : LinearLayout {
+
+    lateinit var interfaceConnector:CustomActionBarInterface
 
     constructor(context: Context) : super(context) {
         init(context, null)
@@ -21,8 +22,9 @@ class CustomActionBar : LinearLayout {
     }
 
     private fun init(context: Context, attrs: AttributeSet?) {
-        var mainTitleText: String? = "Main title"
-        var subTitleText: String? = "Sub title"
+        interfaceConnector = context as CustomActionBarInterface
+        var mainTitleText: String? = ""
+        var subTitleText: String? = ""
         var mainBgColor = Color.DKGRAY
         var pipeVisibility:Int = View.GONE
 
@@ -43,8 +45,12 @@ class CustomActionBar : LinearLayout {
         constraint_layout.setBackgroundColor(mainBgColor)
         pipe_bar.visibility = pipeVisibility
         close_view.setOnClickListener {
-            Toast.makeText(getContext(), "Button clicked", Toast.LENGTH_LONG).show()
-            //                ((Activity)context).finish();
+            interfaceConnector.onClose()
         }
+
+    }
+
+    interface CustomActionBarInterface{
+        fun onClose()
     }
 }
