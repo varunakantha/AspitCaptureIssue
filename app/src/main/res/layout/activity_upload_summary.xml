@@ -14,7 +14,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu_upload_summary_bottom_navigation"/>
+        app:menu="@menu/menu_upload_summary_bottom_navigation" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewUploadItems"
+        android:layout_width="match_parent"
+        android:layout_height="532dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationViewUploadActivity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></androidx.recyclerview.widget.RecyclerView>
 
     <TextView
         android:id="@+id/textView2"
@@ -30,8 +39,8 @@
     <TextView
         android:id="@+id/nothingToSeeHereImageTextView"
         style="@style/open_sans_regular_60_dark_ash"
-        android:layout_width="238dp"
-        android:layout_height="23dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"

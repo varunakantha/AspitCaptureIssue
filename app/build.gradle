@@ -77,5 +77,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
 
     implementation 'com.github.ittianyu:BottomNavigationViewEx:1.2.4'
+    //noinspection GradleCompatible
+    implementation "com.android.support:design:26.+"
     implementation 'com.squareup.picasso:picasso:2.71828'
 }

@@ -1,7 +1,6 @@
 package no.aspit.aspitcapture.ui.imagecapture
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -12,7 +11,10 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.captured_image_add_details.*
 import no.aspit.aspitcapture.R
 import no.aspit.aspitcapture.common.BaseActivity
+import no.aspit.aspitcapture.ui.uploadsummary.UploadDataModel
+import no.aspit.aspitcapture.ui.uploadsummary.UploadsActivity
 import java.io.File
+import java.io.Serializable
 
 class CapturedImageDetailsAddActivity : BaseActivity() {
 
@@ -35,12 +37,24 @@ class CapturedImageDetailsAddActivity : BaseActivity() {
         confirmButton = imageDetailsConfirmButton
 
         imagePath = intent.getStringExtra("image_file_path")
-
         file = File(imagePath)
+        var fileName: String = file?.name?.toString()!!
+        imageTitle.text = fileName
         file?.let {
             Picasso.get()
                     .load(it.toUri())
                     .into(capturedImage)
         }
+
+        confirmButton.setOnClickListener {
+            addToUploadList()
+        }
+    }
+
+    private fun addToUploadList() {
+        var uploadObject = UploadDataModel(file.name, 0, 1)
+        val intent: Intent = Intent(this, UploadsActivity::class.java)
+        intent.putExtra("upload_data_object", uploadObject as Serializable)
+        startActivity(intent)
     }
 }

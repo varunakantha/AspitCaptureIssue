@@ -6,7 +6,12 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.view.MenuItem
+import android.view.View
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.core.content.FileProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
 import kotlinx.android.synthetic.main.activity_upload_summary.*
 import no.aspit.aspitcapture.R
@@ -21,20 +26,42 @@ class UploadsActivity : BaseActivity() {
 
     companion object {
         const val REQUEST_TAKE_PHOTO: Int = 1
+        var list: MutableList<UploadDataModel> = arrayListOf()
+            private set
     }
 
 
     lateinit var bottomNavigationBar: BottomNavigationViewEx
+    lateinit var recyclerView: RecyclerView
+    lateinit var imageTextView: TextView
+    lateinit var nothingToHereTextView: TextView
     private lateinit var mCurrentPhotoPath: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload_summary)
 
+        var uploadDataObject: UploadDataModel? = intent?.extras?.get("upload_data_object") as? UploadDataModel
+        uploadDataObject?.let { list?.add(it) }
+
         bottomNavigationBar = bottomNavigationViewUploadActivity
+        imageTextView = nothingToSeeHereImageTextView
+        nothingToHereTextView = nothingToSeeHereTextView
+        recyclerView = recyclerViewUploadItems
+        recyclerView.hasFixedSize()
+        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false) as RecyclerView.LayoutManager?
+
+        if (list?.size != 0) {
+            imageTextView.visibility = View.GONE
+            nothingToHereTextView.visibility = View.GONE
+        }
+
         bottomNavigationBar.setOnNavigationItemSelectedListener {
             selectedItem(it)
         }
+        var adapter = UploadItemAdapter(list)
+        recyclerView.adapter = adapter
+
     }
 
     private fun selectedItem(it: MenuItem): Boolean {

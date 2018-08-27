@@ -52,7 +52,7 @@
 
     <style name="open_sans_regular_60_dark_ash">
         <item name="android:fontFamily">@font/open_sans_light</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">60sp</item>
         <item name="android:textColor">@color/gray</item>
     </style>
 
