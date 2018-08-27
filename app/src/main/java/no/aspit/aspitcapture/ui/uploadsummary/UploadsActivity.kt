@@ -16,13 +16,14 @@ import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
 import kotlinx.android.synthetic.main.activity_upload_summary.*
 import no.aspit.aspitcapture.R
 import no.aspit.aspitcapture.common.BaseActivity
+import no.aspit.aspitcapture.common.CustomActionBar
 import no.aspit.aspitcapture.ui.imagecapture.CapturedImageFurtherOptionSelectionActivity
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class UploadsActivity : BaseActivity() {
+class UploadsActivity : BaseActivity(),CustomActionBar.CustomActionBarInterface {
 
     companion object {
         const val REQUEST_TAKE_PHOTO: Int = 1
@@ -121,4 +122,8 @@ class UploadsActivity : BaseActivity() {
         intent.putExtra("image_file_path", mCurrentPhotoPath)
         startActivity(intent)
     }
+
+    override fun onClose() {
+    }
+
 }

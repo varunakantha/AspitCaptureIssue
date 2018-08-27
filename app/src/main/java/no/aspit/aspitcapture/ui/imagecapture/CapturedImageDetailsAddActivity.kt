@@ -13,10 +13,11 @@ import no.aspit.aspitcapture.R
 import no.aspit.aspitcapture.common.BaseActivity
 import no.aspit.aspitcapture.ui.uploadsummary.UploadDataModel
 import no.aspit.aspitcapture.ui.uploadsummary.UploadsActivity
+import no.aspit.aspitcapture.common.CustomActionBar
 import java.io.File
 import java.io.Serializable
 
-class CapturedImageDetailsAddActivity : BaseActivity() {
+class CapturedImageDetailsAddActivity : BaseActivity(), CustomActionBar.CustomActionBarInterface  {
 
     lateinit var imagePath: String
     lateinit var file: File
@@ -57,4 +58,8 @@ class CapturedImageDetailsAddActivity : BaseActivity() {
         intent.putExtra("upload_data_object", uploadObject as Serializable)
         startActivity(intent)
     }
+
+    override fun onClose() {
+    }
+
 }

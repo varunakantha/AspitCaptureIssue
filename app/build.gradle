@@ -76,6 +76,9 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
 
+
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+
     implementation 'com.github.ittianyu:BottomNavigationViewEx:1.2.4'
     //noinspection GradleCompatible
     implementation "com.android.support:design:26.+"

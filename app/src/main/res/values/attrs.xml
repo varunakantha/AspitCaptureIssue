@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomActionBar">
+        <attr name="main_text" format="string"/>
+        <attr name="sub_title" format="string"/>
+        <attr name="bar_bg_color" format="color"/>
+        <attr name="pipe_visibility" format="enum">
+            <enum name="VISIBLE" value="0"/>
+            <enum name="INVISIBLE" value="4"/>
+            <enum name="GONE" value="8"/>
+        </attr>
+    </declare-styleable>
+</resources>
