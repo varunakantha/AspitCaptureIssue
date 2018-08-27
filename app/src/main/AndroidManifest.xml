@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="no.aspit.aspitcapture">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:name=".AspitCaptureApplication"
         android:allowBackup="false"
@@ -12,11 +15,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="no.aspit.aspitcapture.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
         <activity android:name=".ui.patientlookup.PatientLookUpActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+            <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.imagecapture.CapturedImageDetailsAddActivity"></activity>
+        <activity android:name=".ui.imagecapture.CapturedImageFurtherOptionSelectionActivity"></activity>
+
+        <activity android:name=".ui.uploadsummary.UploadsActivity">
+            <intent-filter>
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
             </intent-filter>
         </activity>
     </application>

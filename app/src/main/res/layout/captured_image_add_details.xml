@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView"
+            style="@style/open_sans_bold_32_black"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/image_details"
+            android:textAlignment="viewStart"
+            android:textAllCaps="false"
+            android:textSize="32sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/capturedImageView"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/rectangle_rounded_corner_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/imageFileNameTextView"
+            style="@style/open_sans_semibold_15_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/open_sans_semi_bold"
+            android:text="IMG 024.jpg"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@+id/capturedImageView"
+            app:layout_constraintTop_toBottomOf="@+id/capturedImageView"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_lock_black_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageFileNameTextView"
+            app:layout_constraintEnd_toEndOf="@+id/capturedImageView"
+            app:layout_constraintTop_toTopOf="@+id/imageFileNameTextView"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/textView4"
+            style="@style/open_sans_light_12_gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/title"
+            app:layout_constraintStart_toStartOf="@+id/imageFileNameTextView"
+            app:layout_constraintTop_toBottomOf="@+id/imageFileNameTextView" />
+
+        <EditText
+            android:id="@+id/imageTitleEditText"
+            style="@style/open_sans_light_12_gray"
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/details_add_background"
+            android:ems="10"
+            android:hint="@string/title"
+            android:inputType="text"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:singleLine="true"
+            app:layout_constraintEnd_toEndOf="@+id/capturedImageView"
+            app:layout_constraintStart_toStartOf="@+id/capturedImageView"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <TextView
+            android:id="@+id/textView5"
+            style="@style/open_sans_light_15_gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/comment"
+            app:layout_constraintStart_toStartOf="@+id/capturedImageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageTitleEditText" />
+
+        <EditText
+            android:id="@+id/imageCommentEditText"
+            style="@style/open_sans_light_15_gray"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/details_add_background"
+            android:ems="10"
+            android:gravity="top"
+            android:hint="@string/comment"
+            android:inputType="textMultiLine"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:scrollbars="vertical"
+            android:singleLine="false"
+            app:layout_constraintEnd_toEndOf="@+id/imageTitleEditText"
+            app:layout_constraintStart_toStartOf="@+id/capturedImageView"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+        <Button
+            android:id="@+id/imageDetailsConfirmButton"
+            style="@style/open_sans_semibold_24_black"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/blue_button_background"
+            android:text="@string/confirm"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageCommentEditText"
+            app:layout_constraintStart_toStartOf="@+id/capturedImageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageCommentEditText" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
