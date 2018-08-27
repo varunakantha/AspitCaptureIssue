@@ -9,13 +9,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
+        <no.aspit.aspitcapture.common.CustomActionBar
+            android:id="@+id/actionbarImageDetails"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:main_text="Lena Oxton"
+            app:sub_title="121289 12345"
+            app:pipe_visibility="VISIBLE"
+            app:bar_bg_color="@android:color/transparent"/>
+
         <TextView
             android:id="@+id/textView"
             style="@style/open_sans_bold_32_black"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/image_details"
             android:textAlignment="viewStart"
@@ -23,7 +38,7 @@
             android:textSize="32sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/actionbarImageDetails"/>
 
         <ImageView
             android:id="@+id/capturedImageView"

@@ -1,7 +1,5 @@
 package no.aspit.aspitcapture.ui.imagecapture
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -12,9 +10,10 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.captured_image_add_details.*
 import no.aspit.aspitcapture.R
 import no.aspit.aspitcapture.common.BaseActivity
+import no.aspit.aspitcapture.common.CustomActionBar
 import java.io.File
 
-class CapturedImageDetailsAddActivity : BaseActivity() {
+class CapturedImageDetailsAddActivity : BaseActivity(), CustomActionBar.CustomActionBarInterface  {
 
     lateinit var imagePath: String
     lateinit var file: File
@@ -43,4 +42,8 @@ class CapturedImageDetailsAddActivity : BaseActivity() {
                     .into(capturedImage)
         }
     }
+
+    override fun onClose() {
+    }
+
 }

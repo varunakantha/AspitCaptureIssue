@@ -26,8 +26,7 @@ class PatientLookUpActivity : BaseActivity(),CustomActionBar.CustomActionBarInte
             override fun onTextChanged(s: CharSequence, start: Int,
                                        before: Int, count: Int) {
                 if (s.length == 5) {
-                    val intent = Intent(this@PatientLookUpActivity, PatientSummaryActivity::class.java)
-                    startActivity(intent)
+                    startActivity(Intent(this@PatientLookUpActivity, PatientSummaryActivity::class.java))
                 }
             }
         })
