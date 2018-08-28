@@ -15,7 +15,7 @@ class PatientLookUpActivity : BaseActivity(),CustomActionBar.CustomActionBarInte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient_look_up)
 
-        patient_ssn.addTextChangedListener(object : TextWatcher {
+        patientSSN.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable) {}
 
