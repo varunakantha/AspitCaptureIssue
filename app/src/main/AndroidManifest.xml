@@ -26,7 +26,8 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".ui.patientlookup.PatientLookUpActivity">
+        <activity android:name=".ui.patientlookup.PatientLookUpActivity"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
