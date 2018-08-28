@@ -10,4 +10,8 @@
     <string name="send">Send</string>
     <string name="crop">Crop</string>
     <string name="edit">Edit</string>
+    <string name="patient">Patient</string>
+    <string name="social_security_number">Social Security Number</string>
+    <string name="scan">Scan</string>
+    <string name="worklist">Worklist</string>
 </resources>

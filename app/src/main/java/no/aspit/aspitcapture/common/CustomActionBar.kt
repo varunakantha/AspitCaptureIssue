@@ -40,11 +40,11 @@ class CustomActionBar : LinearLayout {
             array.recycle()
         }
 
-        main_title.text = mainTitleText
-        sub_title.text = subTitleText
+        mainTitle.text = mainTitleText
+        subTitle.text = subTitleText
         constraint_layout.setBackgroundColor(mainBgColor)
-        pipe_bar.visibility = pipeVisibility
-        close_view.setOnClickListener {
+        pipeBar.visibility = pipeVisibility
+        closeView.setOnClickListener {
             interfaceConnector.onClose()
         }
 

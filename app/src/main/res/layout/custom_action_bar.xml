@@ -9,55 +9,57 @@
     tools:layout_editor_absoluteY="81dp">
 
     <TextView
-        android:id="@+id/main_title"
+        android:id="@+id/mainTitle"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/open_sans_light"
         android:gravity="center"
-        android:textColor="@color/colorMainThemeColor"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/pipe_bar"
+        android:textColor="@color/gray"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/pipeBar"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <View
-        android:id="@+id/pipe_bar"
-        android:layout_width="2dp"
-        android:layout_height="0dp"
+        android:id="@+id/pipeBar"
+        android:layout_width="1dp"
+        android:layout_height="28dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="4dp"
         android:background="@color/colorMainThemeColor"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/sub_title"
+        app:layout_constraintEnd_toStartOf="@+id/subTitle"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/main_title"
-        app:layout_constraintTop_toTopOf="@+id/main_title"
-        app:layout_constraintVertical_bias="0.51"/>
+        app:layout_constraintStart_toEndOf="@+id/mainTitle"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/sub_title"
+        android:id="@+id/subTitle"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:fontFamily="@font/open_sans_regular"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_light"
         android:gravity="center"
-        android:textColor="@color/colorMainThemeColor"
-        app:layout_constraintEnd_toStartOf="@+id/close_view"
+        android:textColor="@color/gray"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/closeView"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/pipe_bar"
-        app:layout_constraintTop_toTopOf="@+id/main_title"/>
+        app:layout_constraintStart_toEndOf="@+id/pipeBar"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
-        android:id="@+id/close_view"
+        android:id="@+id/closeView"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/main_title"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/close_btn"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

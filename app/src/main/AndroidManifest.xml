@@ -3,8 +3,8 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="no.aspit.aspitcapture">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".AspitCaptureApplication"
@@ -15,7 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="no.aspit.aspitcapture.fileprovider"
@@ -23,15 +22,12 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
+                android:resource="@xml/file_paths"/>
         </provider>
 
-        <activity android:name=".ui.patientlookup.PatientLookUpActivity">
-            <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".ui.patientlookup.PatientLookUpActivity"
+            android:windowSoftInputMode="adjustPan">
 
-            <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".ui.imagecapture.CapturedImageDetailsAddActivity"></activity>
@@ -40,6 +36,15 @@
 
         <activity android:name=".ui.uploadsummary.UploadsActivity"/>
         <activity android:name=".ui.patientlookup.PatientSummaryActivity"/>
+        <activity android:name=".ui.startscreen.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.startscreen.LoginActivity">
+        </activity>
     </application>
 
 </manifest>

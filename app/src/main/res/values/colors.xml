@@ -15,4 +15,5 @@
     <color name="dark_ash">#BCBCBC</color>
     <color name="green">#19F119</color>
     <color name="colorAppBlue">#2BA3FF</color>
+    <color name="colorAppTransparent">#CCF5F5F5</color>
 </resources>
