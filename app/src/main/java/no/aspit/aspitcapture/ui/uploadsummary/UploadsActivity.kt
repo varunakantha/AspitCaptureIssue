@@ -23,13 +23,13 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class UploadsActivity : BaseActivity(), CustomActionBar.CustomActionBarInterface {
+class UploadsActivity : BaseActivity(), CustomActionBar.ActionBarListener {
 
     companion object {
         const val REQUEST_TAKE_PHOTO: Int = 1
-        var list: MutableList<UploadDataModel> = arrayListOf()
-            private set
     }
+    var list: MutableList<UploadDataModel> = arrayListOf()
+        private set
 
 
     lateinit var bottomNavigationBar: BottomNavigationViewEx
@@ -124,6 +124,7 @@ class UploadsActivity : BaseActivity(), CustomActionBar.CustomActionBarInterface
     }
 
     override fun onClose() {
+        finish()
     }
 
 }

@@ -11,7 +11,7 @@ import no.aspit.aspitcapture.R
 
 class CustomActionBar : LinearLayout {
 
-    lateinit var interfaceConnector:CustomActionBarInterface
+    lateinit var listenerConnector:ActionBarListener
 
     constructor(context: Context) : super(context) {
         init(context, null)
@@ -22,7 +22,7 @@ class CustomActionBar : LinearLayout {
     }
 
     private fun init(context: Context, attrs: AttributeSet?) {
-        interfaceConnector = context as CustomActionBarInterface
+        listenerConnector = context as ActionBarListener
         var mainTitleText: String? = ""
         var subTitleText: String? = ""
         var mainBgColor = Color.DKGRAY
@@ -45,12 +45,12 @@ class CustomActionBar : LinearLayout {
         constraint_layout.setBackgroundColor(mainBgColor)
         pipeBar.visibility = pipeVisibility
         closeView.setOnClickListener {
-            interfaceConnector.onClose()
+            listenerConnector.onClose()
         }
 
     }
 
-    interface CustomActionBarInterface{
+    interface ActionBarListener{
         fun onClose()
     }
 }

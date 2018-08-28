@@ -9,7 +9,7 @@ import no.aspit.aspitcapture.R
 import no.aspit.aspitcapture.common.BaseActivity
 import no.aspit.aspitcapture.common.CustomActionBar
 
-class PatientLookUpActivity : BaseActivity(),CustomActionBar.CustomActionBarInterface {
+class PatientLookUpActivity : BaseActivity(),CustomActionBar.ActionBarListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
