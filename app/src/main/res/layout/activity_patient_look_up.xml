@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
-    android:id="@+id/lookup_scroolview"
+    android:id="@+id/lookupScroolview"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,7 +10,7 @@
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint_main"
+        android:id="@+id/constraintMain"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,7 +18,7 @@
         tools:context=".ui.patientlookup.PatientLookUpActivity">
 
         <no.aspit.aspitcapture.common.CustomActionBar
-            android:id="@+id/custom_action_bar"
+            android:id="@+id/customActionBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -31,7 +31,7 @@
             app:pipe_visibility="GONE"/>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/patient_card_view"
+            android:id="@+id/patientCard"
             android:layout_width="0dp"
             android:layout_height="190dp"
             android:layout_marginStart="16dp"
@@ -44,11 +44,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/custom_action_bar"
+            app:layout_constraintTop_toBottomOf="@+id/customActionBar"
             app:layout_constraintVertical_chainStyle="spread_inside">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cons_patient"
+                android:id="@+id/consPatient"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -100,7 +100,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView3"
+            android:id="@+id/scanCard"
             android:layout_width="0dp"
             android:layout_height="190dp"
             android:layout_marginStart="16dp"
@@ -111,10 +111,10 @@
             app:layout_constraintBottom_toTopOf="@+id/cardView4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/patient_card_view">
+            app:layout_constraintTop_toBottomOf="@+id/patientCard">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cons_scan"
+                android:id="@+id/consScan"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -160,10 +160,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView3">
+            app:layout_constraintTop_toBottomOf="@+id/scanCard">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cons_work"
+                android:id="@+id/consWork"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
