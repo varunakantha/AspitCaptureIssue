@@ -14,4 +14,7 @@
     <string name="social_security_number">Social Security Number</string>
     <string name="scan">Scan</string>
     <string name="worklist">Worklist</string>
+    <string name="register">Register</string>
+    <string name="new_pin_code">New Pin Code</string>
+    <string name="confirm_pin_code">Confirm Pin Code</string>
 </resources>

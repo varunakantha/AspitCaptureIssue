@@ -25,15 +25,12 @@
                 android:resource="@xml/file_paths"/>
         </provider>
 
-        <activity android:name=".ui.patientlookup.PatientLookUpActivity"
+        <activity
+            android:name=".ui.patientlookup.PatientLookUpActivity"
             android:windowSoftInputMode="adjustPan">
-
         </activity>
-
-        <activity android:name=".ui.imagecapture.CapturedImageDetailsAddActivity"></activity>
-
-        <activity android:name=".ui.imagecapture.CapturedImageFurtherOptionSelectionActivity"></activity>
-
+        <activity android:name=".ui.imagecapture.CapturedImageDetailsAddActivity"/>
+        <activity android:name=".ui.imagecapture.CapturedImageFurtherOptionSelectionActivity"/>
         <activity android:name=".ui.uploadsummary.UploadsActivity"/>
         <activity android:name=".ui.patientlookup.PatientSummaryActivity"/>
         <activity android:name=".ui.startscreen.SplashActivity">
@@ -44,6 +41,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.startscreen.LoginActivity">
+        </activity>
+        <activity android:name=".ui.startscreen.RegistrationActivity">
         </activity>
     </application>
 
