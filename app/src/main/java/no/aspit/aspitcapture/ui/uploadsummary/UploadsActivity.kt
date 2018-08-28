@@ -23,7 +23,7 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class UploadsActivity : BaseActivity(),CustomActionBar.CustomActionBarInterface {
+class UploadsActivity : BaseActivity(), CustomActionBar.CustomActionBarInterface {
 
     companion object {
         const val REQUEST_TAKE_PHOTO: Int = 1
@@ -99,7 +99,7 @@ class UploadsActivity : BaseActivity(),CustomActionBar.CustomActionBarInterface 
     private fun createImageFile(): File {
         // Create an image file name
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-        val imageFileName = "JPEG_" + timeStamp + "_"
+        val imageFileName = "IMG" + " "
         val storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         storageDir.mkdir()
         val image = File.createTempFile(

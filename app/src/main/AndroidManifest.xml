@@ -33,8 +33,10 @@
             <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.imagecapture.CapturedImageDetailsAddActivity"/>
-        <activity android:name=".ui.imagecapture.CapturedImageFurtherOptionSelectionActivity"/>
+
+        <activity android:name=".ui.imagecapture.CapturedImageDetailsAddActivity"></activity>
+
+        <activity android:name=".ui.imagecapture.CapturedImageFurtherOptionSelectionActivity"></activity>
 
         <activity android:name=".ui.uploadsummary.UploadsActivity"/>
         <activity android:name=".ui.patientlookup.PatientSummaryActivity"/>

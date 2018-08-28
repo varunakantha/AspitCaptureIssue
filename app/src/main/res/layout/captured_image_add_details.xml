@@ -56,18 +56,23 @@
         <TextView
             android:id="@+id/imageFileNameTextView"
             style="@style/open_sans_semibold_15_black"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
             android:fontFamily="@font/open_sans_semi_bold"
-            android:text="IMG 024.jpg"
+            android:singleLine="true"
+            android:text=""
             android:textAlignment="viewStart"
             android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@+id/imageView3"
             app:layout_constraintStart_toStartOf="@+id/capturedImageView"
             app:layout_constraintTop_toBottomOf="@+id/capturedImageView"
             tools:ignore="HardcodedText" />
 
         <ImageView
+            android:id="@+id/imageView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_lock_black_24dp"

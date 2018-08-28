@@ -5,8 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import no.aspit.aspitcapture.R
+
 
 class UploadItemAdapter(var list: List<UploadDataModel>) : RecyclerView.Adapter<UploadItemAdapter.ViewHolder>() {
 
@@ -21,10 +24,16 @@ class UploadItemAdapter(var list: List<UploadDataModel>) : RecyclerView.Adapter<
 
     override fun onBindViewHolder(holder: UploadItemAdapter.ViewHolder, position: Int) {
         holder.fileName.text = list.get(position).name
+
         var fileType = list[position].fileType
         when (fileType) {
             UploadFileType.IMAGE.type -> {
                 holder.fileType.setImageResource(R.drawable.photo_camera_gray)
+                list[position].file?.let {
+                    Picasso.get()
+                            .load(it.toUri())
+                            .into(holder.thumbNailImageView)
+                }
             }
             UploadFileType.VIDEO.type -> {
                 holder.fileType.setImageResource(R.drawable.video_camera_gray)
@@ -48,5 +57,6 @@ class UploadItemAdapter(var list: List<UploadDataModel>) : RecyclerView.Adapter<
         var fileName = view.findViewById<TextView>(R.id.textViewFileName)
         var fileType = view.findViewById<ImageView>(R.id.imageViewFileType)
         var fileUploadStatus = view.findViewById<ImageView>(R.id.imageViewUploadStatus)
+        var thumbNailImageView = view.findViewById<ImageView>(R.id.ImageViewSummaryItemThumbNail)
     }
 }
