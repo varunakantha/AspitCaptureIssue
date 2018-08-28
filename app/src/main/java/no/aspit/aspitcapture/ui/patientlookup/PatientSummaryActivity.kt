@@ -14,7 +14,7 @@ class PatientSummaryActivity : BaseActivity(),CustomActionBar.CustomActionBarInt
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient_summary)
 
-        patient_summary_confirm.setOnClickListener { v ->
+        patientSummaryConfirm.setOnClickListener { v ->
             startActivity(Intent(this@PatientSummaryActivity, UploadsActivity::class.java))
         }
     }
