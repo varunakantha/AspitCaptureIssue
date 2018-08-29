@@ -11,9 +11,11 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_captured_image_further_options.*
 import no.aspit.aspitcapture.R
 import no.aspit.aspitcapture.common.BaseActivity
+import no.aspit.aspitcapture.common.CustomActionBar
 import java.io.File
 
-class CapturedImageFurtherOptionSelectionActivity : BaseActivity() {
+class CapturedImageFurtherOptionSelectionActivity : BaseActivity(),CustomActionBar.ActionBarListener {
+
     lateinit var imageView: ImageView
 
     lateinit var imageSend: ImageButton
@@ -50,4 +52,9 @@ class CapturedImageFurtherOptionSelectionActivity : BaseActivity() {
         intent.putExtra("image_file_path", imagePath)
         startActivity(intent)
     }
+
+    override fun onClose() {
+        finish()
+    }
+
 }

@@ -17,4 +17,7 @@
     <string name="register">Register</string>
     <string name="new_pin_code">New Pin Code</string>
     <string name="confirm_pin_code">Confirm Pin Code</string>
+    <string name="login">Login</string>
+    <string name="pin_code">Pin Code</string>
+    <string name="or_use_touch_id">Or use Touch ID</string>
 </resources>

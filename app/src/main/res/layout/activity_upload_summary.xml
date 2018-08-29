@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/ash">
 
     <no.aspit.aspitcapture.common.CustomActionBar
         android:id="@+id/actionbarUploads"
@@ -23,12 +24,13 @@
         android:id="@+id/bottomNavigationViewUploadActivity"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        app:itemBackground="@color/white"
         app:itemIconTint="@color/dark_ash"
         app:itemTextColor="@color/dark_ash"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu_upload_summary_bottom_navigation" />
+        app:menu="@menu/menu_upload_summary_bottom_navigation"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewUploadItems"
@@ -38,7 +40,7 @@
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationViewUploadActivity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"></androidx.recyclerview.widget.RecyclerView>
+        app:layout_constraintTop_toBottomOf="@+id/textView2"/>
 
     <TextView
         android:id="@+id/textView2"
