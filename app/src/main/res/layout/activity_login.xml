@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/splash"/>
+        app:srcCompat="@drawable/splash_no_text"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
@@ -64,11 +64,12 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:paddingStart="8dp"
             android:background="@drawable/rounded_edittext"
             android:ems="10"
             android:fontFamily="@font/open_sans_regular"
             android:inputType="textPersonName|numberSigned"
+            android:maxLength="4"
+            android:paddingStart="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView10"/>
@@ -84,7 +85,8 @@
             android:text="@string/or_use_touch_id"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userPinCode"/>
+            app:layout_constraintTop_toBottomOf="@+id/userPinCode"
+            />
 
         <ImageView
             android:id="@+id/imageView4"
@@ -97,5 +99,16 @@
             app:srcCompat="@drawable/ic_fingerprint"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="283dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="8dp"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img_logo"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,5 +17,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/splash"/>
+        app:srcCompat="@drawable/splash_no_text"/>
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="283dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView5"
+        app:srcCompat="@drawable/img_logo"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

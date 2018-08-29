@@ -1,32 +1,32 @@
 package no.aspit.aspitcapture.ui.startscreen
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.appcompat.app.AppCompatActivity
+import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
 import no.aspit.aspitcapture.R
+import no.aspit.aspitcapture.common.BaseActivity
+import no.aspit.aspitcapture.extention.toast
 import no.aspit.aspitcapture.ui.patientlookup.PatientLookUpActivity
 
-class LoginActivity : AppCompatActivity() {
-
-    var prefs: SharedPreferences? = null
+class LoginActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        prefs = this.getSharedPreferences(RegistrationActivity.PREFS_FILENAME, android.content.Context.MODE_PRIVATE)
-        val pinCode = prefs?.getString(RegistrationActivity.PIN_CODE,null)
+        val pinCode = getSharedPref()?.getString(PIN_CODE,null)
 
         userPinCode.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable) {
                 if (s.toString() == pinCode) {
                     startActivity(Intent(this@LoginActivity, PatientLookUpActivity::class.java))
-                    userPinCode.text = null
+//                    userPinCode.text = null
+                    finish()
                 }}
 
             override fun beforeTextChanged(s: CharSequence, start: Int,
@@ -38,7 +38,15 @@ class LoginActivity : AppCompatActivity() {
             }
         })
 
-    }
+        userPinCode.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE){
+                if (userPinCode.text.toString() != pinCode) {
+                    toast(getString(R.string.incorrect_pin),Toast.LENGTH_LONG)
+                }
+            }
+             true
+        }
 
+    }
 
 }
