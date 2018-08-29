@@ -5,6 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black">
+    
+
+    <ImageView
+        android:id="@+id/imageViewCapturedImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <no.aspit.aspitcapture.common.CustomActionBar
         android:layout_width="0dp"
@@ -16,16 +26,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:bar_bg_color="@android:color/transparent"
         app:pipe_visibility="GONE"/>
-
-
-    <ImageView
-        android:id="@+id/imageViewCapturedImage"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
 
     <LinearLayout
         android:id="@+id/linearLayout"

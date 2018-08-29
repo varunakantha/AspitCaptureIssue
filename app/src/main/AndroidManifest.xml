@@ -29,7 +29,8 @@
             android:name=".ui.patientlookup.PatientLookUpActivity"
             android:windowSoftInputMode="adjustPan">
         </activity>
-        <activity android:name=".ui.imagecapture.CapturedImageDetailsAddActivity"/>
+        <activity android:name=".ui.imagecapture.CapturedImageDetailsAddActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity android:name=".ui.imagecapture.CapturedImageFurtherOptionSelectionActivity"/>
         <activity android:name=".ui.uploadsummary.UploadsActivity"/>
         <activity android:name=".ui.patientlookup.PatientSummaryActivity"/>

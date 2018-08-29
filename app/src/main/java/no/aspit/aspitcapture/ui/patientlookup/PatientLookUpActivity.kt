@@ -28,6 +28,7 @@ class PatientLookUpActivity : BaseActivity(),CustomActionBar.ActionBarListener {
                                        before: Int, count: Int) {
                 if (s.length == 5) {
                     startActivity(Intent(this@PatientLookUpActivity, PatientSummaryActivity::class.java))
+                    patientSSN.text = null
                 }
             }
         })
