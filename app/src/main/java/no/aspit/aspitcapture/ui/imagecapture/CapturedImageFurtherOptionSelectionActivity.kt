@@ -1,11 +1,11 @@
 package no.aspit.aspitcapture.ui.imagecapture
 
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.net.toUri
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_captured_image_further_options.*
@@ -14,12 +14,13 @@ import no.aspit.aspitcapture.common.BaseActivity
 import no.aspit.aspitcapture.common.CustomActionBar
 import java.io.File
 
-class CapturedImageFurtherOptionSelectionActivity : BaseActivity(),CustomActionBar.ActionBarListener {
+class CapturedImageFurtherOptionSelectionActivity : BaseActivity(), CustomActionBar.ActionBarListener {
 
     lateinit var imageView: ImageView
 
     lateinit var imageSend: ImageButton
     lateinit var sendText: TextView
+    lateinit var sendBackground: ConstraintLayout
     lateinit var file: File
 
     lateinit var imagePath: String
@@ -31,6 +32,7 @@ class CapturedImageFurtherOptionSelectionActivity : BaseActivity(),CustomActionB
 
         imageSend = sendButtonImage
         sendText = sendButtonTextView
+        sendBackground = sendButtonBackground
 
         imagePath = intent?.getStringExtra("image_file_path")!!
         file = File(imagePath)
@@ -45,11 +47,13 @@ class CapturedImageFurtherOptionSelectionActivity : BaseActivity(),CustomActionB
         sendText?.setOnClickListener {
             goToImageDetailsActivity()
         }
+        sendBackground?.setOnClickListener { goToImageDetailsActivity() }
     }
 
     private fun goToImageDetailsActivity() {
         val intent = Intent(this, CapturedImageDetailsAddActivity::class.java)
         intent.putExtra("image_file_path", imagePath)
+        intent.putExtra("editable", 1)
         startActivity(intent)
     }
 

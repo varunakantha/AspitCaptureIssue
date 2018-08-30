@@ -11,7 +11,7 @@ import com.squareup.picasso.Picasso
 import no.aspit.aspitcapture.R
 
 
-class UploadItemAdapter(var list: List<UploadDataModel>) : RecyclerView.Adapter<UploadItemAdapter.ViewHolder>() {
+class UploadItemAdapter(var list: List<UploadDataModel>, private val itemClickListener: (UploadDataModel) -> Unit) : RecyclerView.Adapter<UploadItemAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UploadItemAdapter.ViewHolder {
         val v = LayoutInflater.from(parent?.context).inflate(R.layout.single_upload_item, parent, false)
@@ -23,41 +23,46 @@ class UploadItemAdapter(var list: List<UploadDataModel>) : RecyclerView.Adapter<
     }
 
     override fun onBindViewHolder(holder: UploadItemAdapter.ViewHolder, position: Int) {
-        holder.fileName.text = list.get(position).name
-
-        var fileType = list[position].fileType
-        when (fileType) {
-            UploadFileType.IMAGE.type -> {
-                holder.fileType.setImageResource(R.drawable.photo_camera_gray)
-                list[position].file?.let {
-                    Picasso.get()
-                            .load(it.toUri())
-                            .resize(80, 80)
-                            .into(holder.thumbNailImageView)
-                }
-            }
-            UploadFileType.VIDEO.type -> {
-                holder.fileType.setImageResource(R.drawable.video_camera_gray)
-            }
-            UploadFileType.DOCUMENT.type -> {
-                holder.fileType.setImageResource(R.drawable.document_pdf_gray)
-            }
-        }
-        var status = list[position].status
-        when (status) {
-            UploadStatus.UPLOADING.status -> {
-                holder.fileUploadStatus.setImageResource(R.drawable.uploading_orange)
-            }
-            UploadStatus.COMPLETED.status -> {
-                holder.fileUploadStatus.setImageResource(R.drawable.upload_completed_green)
-            }
-        }
+        holder.bind(list[position], itemClickListener)
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var fileName = view.findViewById<TextView>(R.id.textViewFileName)
-        var fileType = view.findViewById<ImageView>(R.id.imageViewFileType)
-        var fileUploadStatus = view.findViewById<ImageView>(R.id.imageViewUploadStatus)
-        var thumbNailImageView = view.findViewById<ImageView>(R.id.ImageViewSummaryItemThumbNail)
+        var fileName = view.findViewById<TextView>(R.id.textViewFileName)!!
+        var typeOfFile = view.findViewById<ImageView>(R.id.imageViewFileType)!!
+        var fileUploadStatus = view.findViewById<ImageView>(R.id.imageViewUploadStatus)!!
+        var thumbNailImageView = view.findViewById<ImageView>(R.id.ImageViewSummaryItemThumbNail)!!
+
+        fun bind(model: UploadDataModel, listener: (UploadDataModel) -> Unit) {
+            fileName.text = model.name
+
+            var fileType = model.fileType
+            when (fileType) {
+                UploadFileType.IMAGE.type -> {
+                    typeOfFile.setImageResource(R.drawable.photo_camera_gray)
+                    model.file?.let {
+                        Picasso.get()
+                                .load(it.toUri())
+                                .resize(80, 80)
+                                .into(thumbNailImageView)
+                    }
+                }
+                UploadFileType.VIDEO.type -> {
+                    typeOfFile.setImageResource(R.drawable.video_camera_gray)
+                }
+                UploadFileType.DOCUMENT.type -> {
+                    typeOfFile.setImageResource(R.drawable.document_pdf_gray)
+                }
+            }
+            var status = model.status
+            when (status) {
+                UploadStatus.UPLOADING.status -> {
+                    fileUploadStatus.setImageResource(R.drawable.uploading_orange)
+                }
+                UploadStatus.COMPLETED.status -> {
+                    fileUploadStatus.setImageResource(R.drawable.upload_completed_green)
+                }
+            }
+            itemView.setOnClickListener { listener(model) }
+        }
     }
 }

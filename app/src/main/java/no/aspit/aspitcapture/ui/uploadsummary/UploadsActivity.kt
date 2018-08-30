@@ -17,9 +17,11 @@ import kotlinx.android.synthetic.main.activity_upload_summary.*
 import no.aspit.aspitcapture.R
 import no.aspit.aspitcapture.common.BaseActivity
 import no.aspit.aspitcapture.common.CustomActionBar
+import no.aspit.aspitcapture.ui.imagecapture.CapturedImageDetailsAddActivity
 import no.aspit.aspitcapture.ui.imagecapture.CapturedImageFurtherOptionSelectionActivity
 import java.io.File
 import java.io.IOException
+import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -60,9 +62,17 @@ class UploadsActivity : BaseActivity(), CustomActionBar.ActionBarListener {
         bottomNavigationBar.setOnNavigationItemSelectedListener {
             selectedItem(it)
         }
-        var adapter = UploadItemAdapter(list)
+        var adapter = UploadItemAdapter(list) { item: UploadDataModel -> partItemClicked(item) }
         recyclerView.adapter = adapter
 
+
+    }
+
+    private fun partItemClicked(uploadDataModel: UploadDataModel) {
+        var intent = Intent(this, CapturedImageDetailsAddActivity::class.java)
+        intent.putExtra("upload_object", uploadDataModel as Serializable)
+        intent.putExtra("editable", 0)
+        startActivity(intent)
     }
 
     private fun selectedItem(it: MenuItem): Boolean {
