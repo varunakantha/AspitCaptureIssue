@@ -32,6 +32,7 @@ class UploadItemAdapter(var list: List<UploadDataModel>) : RecyclerView.Adapter<
                 list[position].file?.let {
                     Picasso.get()
                             .load(it.toUri())
+                            .resize(80, 80)
                             .into(holder.thumbNailImageView)
                 }
             }
