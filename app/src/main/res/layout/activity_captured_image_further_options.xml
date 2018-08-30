@@ -33,25 +33,26 @@
         android:layout_height="100dp"
         android:background="@color/black"
         android:orientation="horizontal"
-        android:paddingTop="20dp"
         android:weightSum="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        android:baselineAligned="false">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/capture_edit_menu_selector">
 
             <ImageButton
                 android:id="@+id/button2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="8dp"
-                android:background="@color/black"
+                android:background="@drawable/capture_edit_menu_selector"
                 android:src="@drawable/ic_edit_white_24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +63,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/capture_edit_menu_selector"
                 android:text="@string/edit"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/button2"
@@ -72,17 +74,18 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/capture_edit_menu_selector">
 
             <ImageButton
                 android:id="@+id/button3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="8dp"
-                android:background="@color/black"
+                android:background="@drawable/capture_edit_menu_selector"
                 android:src="@drawable/ic_crop_white_24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -93,7 +96,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/capture_edit_menu_selector"
                 android:text="@string/crop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/button3"
@@ -102,20 +106,21 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/sendButtonBackground"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/capture_edit_menu_selector">
 
             <ImageButton
                 android:id="@+id/sendButtonImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="8dp"
-                android:background="@color/black"
+                android:background="@drawable/capture_edit_menu_selector"
                 android:src="@drawable/ic_send_white"
-                android:text="Button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -126,8 +131,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="16dp"
                 android:text="@string/send"
+                android:background="@drawable/capture_edit_menu_selector"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/sendButtonImage"
                 app:layout_constraintStart_toStartOf="@+id/sendButtonImage"
