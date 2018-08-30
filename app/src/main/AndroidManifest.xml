@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="no.aspit.aspitcapture">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="no.aspit.aspitcapture">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".AspitCaptureApplication"
@@ -22,28 +23,35 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
+                android:resource="@xml/file_paths" />
         </provider>
 
         <activity
             android:name=".ui.patientlookup.PatientLookUpActivity"
-            android:windowSoftInputMode="adjustPan">
-        </activity>
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".ui.imagecapture.CapturedImageDetailsAddActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
-        <activity android:name=".ui.imagecapture.CapturedImageFurtherOptionSelectionActivity"/>
+        android:windowSoftInputMode="stateAlwaysHidden"/><activity android:name=".ui.imagecapture.CapturedImageFurtherOptionSelectionActivity"/>
         <activity android:name=".ui.uploadsummary.UploadsActivity"/>
         <activity android:name=".ui.patientlookup.PatientSummaryActivity"/>
         <activity android:name=".ui.startscreen.SplashActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.startscreen.LoginActivity">
-        </activity>
+        <activity android:name=".ui.startscreen.LoginActivity" />
         <activity android:name=".ui.startscreen.RegistrationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="no.aspit.aspitcapture"
+                    android:scheme="app" />
+            </intent-filter>
         </activity>
     </application>
 

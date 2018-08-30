@@ -4,7 +4,8 @@ import android.content.Context
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import no.aspit.aspitcapture.BuildConfig
-import no.aspit.aspitcapture.common.Utils
+import no.aspit.aspitcapture.common.Constant
+import no.aspit.aspitcapture.common.Constant.Companion.TOKEN_ENDPOINT
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -13,69 +14,73 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory.create
 
-class Service(context: Context) {
+class Service(var context: Context, var accessToken: String = "") {
     private val cacheSize: Long = 10 * 1024 * 1024
 
-    private var retrofit: Retrofit
+    private var converterFactory: Converter.Factory
 
-    private var service: Api
+    private var client: OkHttpClient
 
     init {
-        val accessToken = Utils().getAccessToken(context)
-        val client: OkHttpClient
-        if (accessToken?.isNotEmpty()!!) {
+        if (accessToken.isNotEmpty()) {
             client = OkHttpClient.Builder()
-                .cache(Cache(context.cacheDir, cacheSize))
-                .addInterceptor { chain ->
-                    val original = chain.request()
-                    val requestBuilder = original.newBuilder()
-                        .header("Accept", "application/json")
-                        .header("Content-Type", "application/json")
-                        .header(
-                            "Authorization", "Bearer $accessToken"
-                        )
-                        .method(original.method(), original.body())
+                    .cache(Cache(context.cacheDir, cacheSize))
+                    .addInterceptor { chain ->
+                        val original = chain.request()
+                        val requestBuilder = original.newBuilder()
+                                .header("Accept", "application/json")
+                                .header("Content-Type", "application/json")
+                                .header(
+                                        "Authorization", "Bearer $accessToken"
+                                )
+                                .method(original.method(), original.body())
 
-                    val request = requestBuilder.build()
-                    chain.proceed(request)
-                }
-                .addInterceptor(HttpLoggingInterceptor().apply {
-                    level = HttpLoggingInterceptor.Level.BODY
-                })
-                .build()
+                        val request = requestBuilder.build()
+                        chain.proceed(request)
+                    }
+                    .addInterceptor(HttpLoggingInterceptor().apply {
+                        level = HttpLoggingInterceptor.Level.BODY
+                    })
+                    .build()
         } else {
             client = OkHttpClient.Builder()
-                .cache(Cache(context.cacheDir, cacheSize))
-                .addInterceptor(HttpLoggingInterceptor().apply {
-                    level = HttpLoggingInterceptor.Level.BODY
-                })
-                .build()
-        }
-        val converterFactory: Converter.Factory =
-            create(
-                Moshi.Builder()
-                    .add(KotlinJsonAdapterFactory())
+                    .cache(Cache(context.cacheDir, cacheSize))
+                    .addInterceptor(HttpLoggingInterceptor().apply {
+                        level = HttpLoggingInterceptor.Level.BODY
+                    })
                     .build()
-            )
-        retrofit =
-            Retrofit.Builder()
+        }
+        converterFactory =
+                create(
+                        Moshi.Builder()
+                                .add(KotlinJsonAdapterFactory())
+                                .build()
+                )
+
+    }
+
+    private fun generateService(baseUrl: String): Api? {
+        val retrofit = Retrofit.Builder()
                 .client(client)
-                .baseUrl(BuildConfig.API_BASE_URL)
+                .baseUrl(baseUrl)
                 .addConverterFactory(converterFactory)
                 .build()
-        service = retrofit.create(Api::class.java)
+        return retrofit.create(Api::class.java)
     }
-
 
     //region api functions
-
-    fun authenticate(
-        email: String,
-        password: String,
-        callBack: Callback<Token>
+    fun authenticationToken(
+            authCode: String,
+            clientId: String,
+            redirectUri: String,
+            callback: Callback<Token>
     ) {
-        service.authenticate(email, password).enqueue(callBack)
+        generateService(BuildConfig.AUTHORIZATION_BASE_URL)?.authenticationToken(
+                authCode,
+                "authorization_code",
+                clientId,
+                redirectUri
+        )!!.enqueue(callback)
     }
-
     //endregion
 }
