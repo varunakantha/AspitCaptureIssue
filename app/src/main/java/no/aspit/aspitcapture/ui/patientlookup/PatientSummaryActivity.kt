@@ -8,7 +8,7 @@ import no.aspit.aspitcapture.common.BaseActivity
 import no.aspit.aspitcapture.common.CustomActionBar
 import no.aspit.aspitcapture.ui.uploadsummary.UploadsActivity
 
-class PatientSummaryActivity : BaseActivity(),CustomActionBar.CustomActionBarInterface {
+class PatientSummaryActivity : BaseActivity(),CustomActionBar.ActionBarListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,6 +16,7 @@ class PatientSummaryActivity : BaseActivity(),CustomActionBar.CustomActionBarInt
 
         patientSummaryConfirm.setOnClickListener { v ->
             startActivity(Intent(this@PatientSummaryActivity, UploadsActivity::class.java))
+            finish()
         }
     }
 

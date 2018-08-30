@@ -23,7 +23,7 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class UploadsActivity : BaseActivity(), CustomActionBar.CustomActionBarInterface {
+class UploadsActivity : BaseActivity(), CustomActionBar.ActionBarListener {
 
     companion object {
         const val REQUEST_TAKE_PHOTO: Int = 1
@@ -124,6 +124,8 @@ class UploadsActivity : BaseActivity(), CustomActionBar.CustomActionBarInterface
     }
 
     override fun onClose() {
+        list.clear()
+        finish()
     }
 
 }

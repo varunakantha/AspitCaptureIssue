@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,13 +16,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            app:bar_bg_color="@android:color/transparent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:main_text="Lena Oxton"
-            app:sub_title="121289 12345"
             app:pipe_visibility="VISIBLE"
-            app:bar_bg_color="@android:color/transparent"/>
+            app:sub_title="121289 12345"/>
 
         <TextView
             android:id="@+id/textViewFileName"
@@ -51,7 +51,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewFileName"
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription"/>
 
         <TextView
             android:id="@+id/imageFileNameTextView"
@@ -63,60 +63,59 @@
             android:ellipsize="end"
             android:fontFamily="@font/open_sans_semi_bold"
             android:singleLine="true"
-            android:text=""
+            tools:text="IMG 001.jpg"
             android:textAlignment="viewStart"
             android:textColor="@color/black"
             app:layout_constraintEnd_toStartOf="@+id/imageView3"
             app:layout_constraintStart_toStartOf="@+id/capturedImageView"
             app:layout_constraintTop_toBottomOf="@+id/capturedImageView"
-            tools:ignore="HardcodedText" />
+            tools:ignore="HardcodedText"/>
 
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_lock_black_24dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/imageFileNameTextView"
             app:layout_constraintEnd_toEndOf="@+id/capturedImageView"
             app:layout_constraintTop_toTopOf="@+id/imageFileNameTextView"
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription"/>
 
         <TextView
             android:id="@+id/textView4"
             style="@style/open_sans_light_12_gray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:text="@string/title"
+            android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="@+id/imageFileNameTextView"
-            app:layout_constraintTop_toBottomOf="@+id/imageFileNameTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/imageFileNameTextView"/>
 
         <EditText
             android:id="@+id/imageTitleEditText"
-            style="@style/open_sans_light_12_gray"
+            style="@style/open_sans_light_15_gray"
             android:layout_width="300dp"
             android:layout_height="30dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/details_add_background"
-            android:ems="10"
-            android:hint="@string/title"
-            android:inputType="text"
-            android:paddingLeft="4dp"
+            android:background="@drawable/rounded_edittext"
+            android:inputType="textCapSentences"
+            android:paddingLeft="8dp"
             android:paddingRight="4dp"
             android:singleLine="true"
             app:layout_constraintEnd_toEndOf="@+id/capturedImageView"
             app:layout_constraintStart_toStartOf="@+id/capturedImageView"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintTop_toBottomOf="@+id/textView4"/>
 
         <TextView
             android:id="@+id/textView5"
-            style="@style/open_sans_light_15_gray"
+            style="@style/open_sans_light_12_gray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/comment"
-            app:layout_constraintStart_toStartOf="@+id/capturedImageView"
-            app:layout_constraintTop_toBottomOf="@+id/imageTitleEditText" />
+            app:layout_constraintStart_toStartOf="@+id/imageTitleEditText"
+            app:layout_constraintTop_toBottomOf="@+id/imageTitleEditText"/>
 
         <EditText
             android:id="@+id/imageCommentEditText"
@@ -124,18 +123,17 @@
             android:layout_width="300dp"
             android:layout_height="100dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/details_add_background"
-            android:ems="10"
+            android:background="@drawable/rounded_edittext"
             android:gravity="top"
-            android:hint="@string/comment"
             android:inputType="textMultiLine"
-            android:paddingLeft="4dp"
+            android:paddingTop="4dp"
+            android:paddingLeft="8dp"
             android:paddingRight="4dp"
             android:scrollbars="vertical"
             android:singleLine="false"
             app:layout_constraintEnd_toEndOf="@+id/imageTitleEditText"
             app:layout_constraintStart_toStartOf="@+id/capturedImageView"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            app:layout_constraintTop_toBottomOf="@+id/textView5"/>
 
         <Button
             android:id="@+id/imageDetailsConfirmButton"
@@ -143,7 +141,7 @@
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_marginTop="32dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/blue_button_background"
             android:text="@string/confirm"
             android:textAllCaps="false"
@@ -151,7 +149,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/imageCommentEditText"
             app:layout_constraintStart_toStartOf="@+id/capturedImageView"
-            app:layout_constraintTop_toBottomOf="@+id/imageCommentEditText" />
+            app:layout_constraintTop_toBottomOf="@+id/imageCommentEditText"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,5 +1,6 @@
 package no.aspit.aspitcapture.ui.imagecapture
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -17,7 +18,7 @@ import no.aspit.aspitcapture.ui.uploadsummary.UploadsActivity
 import java.io.File
 import java.io.Serializable
 
-class CapturedImageDetailsAddActivity : BaseActivity(), CustomActionBar.CustomActionBarInterface {
+class CapturedImageDetailsAddActivity : BaseActivity(), CustomActionBar.ActionBarListener {
 
     lateinit var imagePath: String
     lateinit var file: File
@@ -56,10 +57,13 @@ class CapturedImageDetailsAddActivity : BaseActivity(), CustomActionBar.CustomAc
         var uploadObject = UploadDataModel(file.name, 0, 1, file)
         val intent: Intent = Intent(this, UploadsActivity::class.java)
         intent.putExtra("upload_data_object", uploadObject as Serializable)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(intent)
+        finish()
     }
 
     override fun onClose() {
+        finish()
     }
 
 }

@@ -8,8 +8,9 @@ import kotlinx.android.synthetic.main.activity_patient_look_up.*
 import no.aspit.aspitcapture.R
 import no.aspit.aspitcapture.common.BaseActivity
 import no.aspit.aspitcapture.common.CustomActionBar
+import no.aspit.aspitcapture.ui.startscreen.RegistrationActivity
 
-class PatientLookUpActivity : BaseActivity(),CustomActionBar.CustomActionBarInterface {
+class PatientLookUpActivity : BaseActivity(),CustomActionBar.ActionBarListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,12 +28,14 @@ class PatientLookUpActivity : BaseActivity(),CustomActionBar.CustomActionBarInte
                                        before: Int, count: Int) {
                 if (s.length == 5) {
                     startActivity(Intent(this@PatientLookUpActivity, PatientSummaryActivity::class.java))
+                    patientSSN.text = null
                 }
             }
         })
     }
 
     override fun onClose() {
+        startActivity(Intent(this@PatientLookUpActivity,RegistrationActivity::class.java))
         finish()
     }
 }
