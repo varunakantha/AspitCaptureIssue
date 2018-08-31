@@ -97,7 +97,7 @@ class UploadsActivity : BaseActivity(), CustomActionBar.ActionBarListener {
             photoFile?.let {
                 val photoUri = FileProvider.getUriForFile(
                         this,
-                        "no.aspit.aspitcapture.fileprovider",
+                        "no.aspit.capture.fileprovider",
                         photoFile
                 )
                 photoUri?.let {
