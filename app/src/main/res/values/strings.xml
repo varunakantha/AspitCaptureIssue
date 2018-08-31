@@ -22,4 +22,5 @@
     <string name="or_use_touch_id">Or use Touch ID</string>
     <string name="pin_mismatch">Pin mismatch</string>
     <string name="incorrect_pin">Incorrect pin code</string>
+    <string name="log_out">Log Out</string>
 </resources>

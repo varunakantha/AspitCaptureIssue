@@ -1,6 +1,8 @@
 package no.aspit.capture.common
 
 import android.annotation.SuppressLint
+import android.content.pm.ActivityInfo
+import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +16,11 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     private var loadingView: View? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+    }
 
     private fun getLoadingView(): View {
         return View.inflate(this, R.layout.loading, null)
