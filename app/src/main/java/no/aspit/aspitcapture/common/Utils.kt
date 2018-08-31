@@ -2,16 +2,22 @@ package no.aspit.aspitcapture.common
 
 import android.content.Context
 import no.aspit.aspitcapture.ui.uploadsummary.UploadFileType
+import no.aspit.aspitcapture.extention.deleteString
+import no.aspit.aspitcapture.extention.readString
+import no.aspit.aspitcapture.extention.saveString
+import no.aspit.aspitcapture.net.Token
 
 class Utils {
-    fun getAccessToken(context: Context): String? {
-        return context.getSharedPreferences("aspit_capture", Context.MODE_PRIVATE)
-                .getString("token", "")
+    fun getAccessToken(context: Context): Token? {
+        return JsonParser().toToken(context.readString(Constant.KEY_AUTH_TOKEN))
     }
 
     fun clearAccessToken(context: Context) {
-        return context.getSharedPreferences("aspit_capture", Context.MODE_PRIVATE)
-                .edit().remove("token").apply()
+        context.deleteString(Constant.KEY_AUTH_TOKEN)
+    }
+
+    fun saveToken(context: Context, token: Token) {
+        context.saveString(Constant.KEY_AUTH_TOKEN, JsonParser().toJson(token))
     }
 }
 

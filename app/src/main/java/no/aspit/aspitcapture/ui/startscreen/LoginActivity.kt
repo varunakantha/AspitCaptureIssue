@@ -9,6 +9,8 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
 import no.aspit.aspitcapture.R
 import no.aspit.aspitcapture.common.BaseActivity
+import no.aspit.aspitcapture.common.Constant.Companion.KEY_PIN_CODE
+import no.aspit.aspitcapture.extention.readString
 import no.aspit.aspitcapture.extention.toast
 import no.aspit.aspitcapture.ui.patientlookup.PatientLookUpActivity
 
@@ -18,7 +20,7 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val pinCode = getSharedPref()?.getString(PIN_CODE,null)
+        val pinCode = readString(KEY_PIN_CODE)
 
         userPinCode.addTextChangedListener(object : TextWatcher {
 
@@ -41,7 +43,7 @@ class LoginActivity : BaseActivity() {
         userPinCode.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE){
                 if (userPinCode.text.toString() != pinCode) {
-                    toast(getString(R.string.incorrect_pin),Toast.LENGTH_LONG)
+                    toast(getString(R.string.incorrect_pin), Toast.LENGTH_LONG)
                 }
             }
              true
