@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,14 +23,14 @@ import no.aspit.aspitcapture.ui.imagecapture.CapturedImageFurtherOptionSelection
 import java.io.File
 import java.io.IOException
 import java.io.Serializable
-import java.text.SimpleDateFormat
-import java.util.*
 
 class UploadsActivity : BaseActivity(), CustomActionBar.ActionBarListener {
 
     companion object {
         const val REQUEST_TAKE_PHOTO: Int = 1
         var list: MutableList<UploadDataModel> = arrayListOf()
+            private set
+        var addedItemsCount: Int = 0
             private set
     }
 
@@ -45,7 +46,9 @@ class UploadsActivity : BaseActivity(), CustomActionBar.ActionBarListener {
         setContentView(R.layout.activity_upload_summary)
 
         var uploadDataObject: UploadDataModel? = intent?.extras?.get("upload_data_object") as? UploadDataModel
-        uploadDataObject?.let { list?.add(it) }
+        uploadDataObject?.let {
+            list?.add(it)
+        }
 
         bottomNavigationBar = bottomNavigationViewUploadActivity
         imageTextView = nothingToSeeHereImageTextView
@@ -107,13 +110,12 @@ class UploadsActivity : BaseActivity(), CustomActionBar.ActionBarListener {
 
     @Throws(IOException::class)
     private fun createImageFile(): File {
-        // Create an image file name
-        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-        val imageFileName = "IMG" + " "
+        addedItemsCount++
+        var imageNumber = String.format("%03d", addedItemsCount)
         val storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         storageDir.mkdir()
         val image = File.createTempFile(
-                imageFileName, /* prefix */
+                imageNumber, /* prefix */
                 ".jpg", /* suffix */
                 storageDir      /* directory */
         )
@@ -134,8 +136,23 @@ class UploadsActivity : BaseActivity(), CustomActionBar.ActionBarListener {
     }
 
     override fun onClose() {
+        if (list.size > 0) giveWarning() else clearDataAndGoBack()
+    }
+
+    private fun clearDataAndGoBack() {
         list.clear()
+        addedItemsCount = 0
         finish()
     }
 
+
+    private fun giveWarning() {
+        var alertDialogBuilder = AlertDialog.Builder(this)
+        alertDialogBuilder.setTitle("Warning")
+                .setMessage("Do you want to continue?")
+                .setPositiveButton("Yes") { _, _ -> clearDataAndGoBack() }
+                .setNegativeButton("No") { _, _ -> return@setNegativeButton }
+        var dialog = alertDialogBuilder.create()
+        dialog.show()
+    }
 }

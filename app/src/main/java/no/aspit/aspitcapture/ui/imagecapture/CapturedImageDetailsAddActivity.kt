@@ -13,7 +13,9 @@ import kotlinx.android.synthetic.main.captured_image_add_details.*
 import no.aspit.aspitcapture.R
 import no.aspit.aspitcapture.common.BaseActivity
 import no.aspit.aspitcapture.common.CustomActionBar
+import no.aspit.aspitcapture.common.renameFile
 import no.aspit.aspitcapture.ui.uploadsummary.UploadDataModel
+import no.aspit.aspitcapture.ui.uploadsummary.UploadFileType
 import no.aspit.aspitcapture.ui.uploadsummary.UploadsActivity
 import java.io.File
 import java.io.Serializable
@@ -27,7 +29,7 @@ lateinit var imageTitle: TextView
 lateinit var imageTitleEdit: EditText
 lateinit var imageCommentEdit: EditText
 lateinit var confirmButton: Button
-lateinit var lock:ImageView
+lateinit var lock: ImageView
 var editableMode: Int = 0
 
 class CapturedImageDetailsAddActivity : BaseActivity(), CustomActionBar.ActionBarListener {
@@ -50,6 +52,7 @@ class CapturedImageDetailsAddActivity : BaseActivity(), CustomActionBar.ActionBa
         imagePath = intent.getStringExtra("image_file_path")
         file = File(imagePath)
         var fileName: String = file?.name?.toString()!!
+        fileName = fileName?.renameFile(UploadFileType.IMAGE)!!
         imageTitle.text = fileName
         file?.let {
             Picasso.get()
@@ -68,7 +71,7 @@ class CapturedImageDetailsAddActivity : BaseActivity(), CustomActionBar.ActionBa
         imageTitleEdit.setText(uploadDataObject.title)
         imageCommentEdit.isEnabled = false
         imageCommentEdit.setText(uploadDataObject.comment)
-        imageTitle.text = uploadDataObject?.file?.name?.toString()!!
+        imageTitle.text = uploadDataObject?.file?.name?.toString()?.renameFile(UploadFileType.IMAGE)
         lock.visibility = View.VISIBLE
         uploadDataObject.file?.let {
             Picasso.get()

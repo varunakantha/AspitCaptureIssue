@@ -9,6 +9,7 @@ import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import no.aspit.aspitcapture.R
+import no.aspit.aspitcapture.common.renameFile
 
 
 class UploadItemAdapter(var list: List<UploadDataModel>, private val itemClickListener: (UploadDataModel) -> Unit) : RecyclerView.Adapter<UploadItemAdapter.ViewHolder>() {
@@ -33,23 +34,23 @@ class UploadItemAdapter(var list: List<UploadDataModel>, private val itemClickLi
         var thumbNailImageView = view.findViewById<ImageView>(R.id.ImageViewSummaryItemThumbNail)!!
 
         fun bind(model: UploadDataModel, listener: (UploadDataModel) -> Unit) {
-            fileName.text = model.name
-
             var fileType = model.fileType
             when (fileType) {
                 UploadFileType.IMAGE.type -> {
+                    fileName.text = model?.name?.renameFile(UploadFileType.IMAGE)
                     typeOfFile.setImageResource(R.drawable.photo_camera_gray)
                     model.file?.let {
                         Picasso.get()
                                 .load(it.toUri())
-                                .resize(80, 80)
                                 .into(thumbNailImageView)
                     }
                 }
                 UploadFileType.VIDEO.type -> {
+                    fileName.text = model?.name?.renameFile(UploadFileType.VIDEO)
                     typeOfFile.setImageResource(R.drawable.video_camera_gray)
                 }
                 UploadFileType.DOCUMENT.type -> {
+                    fileName.text = model?.name?.renameFile(UploadFileType.IMAGE)
                     typeOfFile.setImageResource(R.drawable.document_pdf_gray)
                 }
             }

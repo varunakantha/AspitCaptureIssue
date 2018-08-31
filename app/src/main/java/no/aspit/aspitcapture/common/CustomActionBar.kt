@@ -11,7 +11,7 @@ import no.aspit.aspitcapture.R
 
 class CustomActionBar : LinearLayout {
 
-    lateinit var listenerConnector:ActionBarListener
+    lateinit var listenerConnector: ActionBarListener
 
     constructor(context: Context) : super(context) {
         init(context, null)
@@ -26,7 +26,7 @@ class CustomActionBar : LinearLayout {
         var mainTitleText: String? = ""
         var subTitleText: String? = ""
         var mainBgColor = Color.DKGRAY
-        var pipeVisibility:Int = View.GONE
+        var pipeVisibility: Int = View.GONE
 
         val inflater = LayoutInflater.from(getContext())
         inflater.inflate(R.layout.custom_action_bar, this)
@@ -50,7 +50,7 @@ class CustomActionBar : LinearLayout {
 
     }
 
-    interface ActionBarListener{
+    interface ActionBarListener {
         fun onClose()
     }
 }
