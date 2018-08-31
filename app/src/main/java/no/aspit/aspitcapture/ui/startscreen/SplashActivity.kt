@@ -24,14 +24,10 @@ class SplashActivity : BaseActivity() {
                     redirectToAuthentication()
                     finish()
                 } else {
-                    val pinCode = readString(KEY_PIN_CODE)
-                    if (pinCode.isEmpty()) {
-                        startActivity(Intent(this@SplashActivity, RegistrationActivity::class.java))
-                        finish()
-                    } else {
-                        startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
-                        finish()
-                    }
+                    val intent = Intent(this@SplashActivity, RegistrationActivity::class.java)
+                    intent.putExtra("FROM_BEGINNING", true)
+                    startActivity(intent)
+                    finish()
                 }
             }
 

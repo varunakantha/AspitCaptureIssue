@@ -10,7 +10,7 @@ import no.aspit.aspitcapture.common.BaseActivity
 import no.aspit.aspitcapture.common.CustomActionBar
 import no.aspit.aspitcapture.ui.startscreen.RegistrationActivity
 
-class PatientLookUpActivity : BaseActivity(),CustomActionBar.ActionBarListener {
+class PatientLookUpActivity : BaseActivity(), CustomActionBar.ActionBarListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +35,9 @@ class PatientLookUpActivity : BaseActivity(),CustomActionBar.ActionBarListener {
     }
 
     override fun onClose() {
-        startActivity(Intent(this@PatientLookUpActivity,RegistrationActivity::class.java))
+        val intent = Intent(this@PatientLookUpActivity, RegistrationActivity::class.java)
+        intent.putExtra("FROM_BEGINNING", false)
+        startActivity(intent)
         finish()
     }
 }
