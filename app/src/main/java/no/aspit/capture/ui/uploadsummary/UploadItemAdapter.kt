@@ -8,13 +8,11 @@ import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import no.aspit.aspitcapture.R
-import no.aspit.aspitcapture.common.renameFile
+import no.aspit.capture.R
+import no.aspit.capture.common.renameFile
 import org.joda.time.DateTime
 import org.joda.time.Period
 import org.joda.time.format.PeriodFormatterBuilder
-import no.aspit.capture.R
-import no.aspit.capture.common.renameFile
 
 
 class UploadItemAdapter(var list: List<UploadDataModel>, private val itemClickListener: (UploadDataModel) -> Unit) : RecyclerView.Adapter<UploadItemAdapter.ViewHolder>() {
