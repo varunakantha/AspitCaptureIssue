@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:layout_marginLeft="8dp"
@@ -53,19 +54,20 @@
             android:id="@+id/imageViewFileType"
             android:layout_width="30dp"
             android:layout_height="24dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageViewUploadStatus"
             app:layout_constraintStart_toStartOf="@+id/textViewFileName"
+            app:layout_constraintTop_toBottomOf="@+id/textViewFileName"
             app:srcCompat="@drawable/photo_camera_gray" />
 
         <TextView
             android:id="@+id/textViewTimeUploaded"
             style="@style/open_sans_light_15_gray"
             android:layout_width="0dp"
+            android:text="2 Seconds ago"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="4 min ago"
-            app:layout_constraintBottom_toBottomOf="@+id/imageViewFileType"
+            android:layout_marginTop="4dp"
             app:layout_constraintEnd_toEndOf="@+id/textViewFileName"
             app:layout_constraintStart_toEndOf="@+id/imageViewFileType"
             app:layout_constraintTop_toTopOf="@+id/imageViewFileType" />
