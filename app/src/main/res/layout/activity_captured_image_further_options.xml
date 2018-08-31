@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <no.aspit.aspitcapture.common.CustomActionBar
+    <no.aspit.capture.common.CustomActionBar
         android:layout_width="0dp"
         android:layout_height="57dp"
         android:layout_marginStart="8dp"

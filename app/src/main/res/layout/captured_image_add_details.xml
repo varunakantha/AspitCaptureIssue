@@ -10,7 +10,7 @@
         android:layout_height="wrap_content">
 
 
-        <no.aspit.aspitcapture.common.CustomActionBar
+        <no.aspit.capture.common.CustomActionBar
             android:id="@+id/actionbarImageDetails"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

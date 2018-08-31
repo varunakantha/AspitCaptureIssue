@@ -17,7 +17,7 @@
         android:background="@color/colorMainBackground"
         tools:context=".ui.patientlookup.PatientLookUpActivity">
 
-        <no.aspit.aspitcapture.common.CustomActionBar
+        <no.aspit.capture.common.CustomActionBar
             android:id="@+id/customActionBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

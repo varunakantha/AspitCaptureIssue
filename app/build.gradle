@@ -29,6 +29,17 @@ android {
             buildConfigField 'String', 'AUTHORIZATION_SCOPE', '"openid profile aspit-medic-api helseid://scopes/hpr/hpr_number"'
             buildConfigField 'String', 'REDIRECT_URI', '"app://no.aspit.aspitcapture/callback"'
         }
+
+        dev {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'API_BASE_URL', '"https://medic-proto.aspit-dev.no/"'
+            buildConfigField 'String', 'AUTHORIZATION_BASE_URL', '"https://identity.aspit-dev.no/"'
+            buildConfigField 'String', 'CLIENT_ID', '"aspitcapture"'
+            buildConfigField 'String', 'CLIENT_SECRET', '"BRVpMstsF0pK3y8dLBMpkmcO8GvJs3H9DaGJx/tHxmU="'
+            buildConfigField 'String', 'AUTHORIZATION_SCOPE', '"openid profile aspit-medic-api helseid://scopes/hpr/hpr_number"'
+            buildConfigField 'String', 'REDIRECT_URI', '"app://no.aspit.aspitcapture/callback"'
+        }
         debug {
             buildConfigField 'String', 'API_BASE_URL', '"https://medic-proto.aspit-dev.no/"'
             buildConfigField 'String', 'AUTHORIZATION_BASE_URL', '"https://identity.aspit-dev.no/"'

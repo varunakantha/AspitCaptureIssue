@@ -8,7 +8,7 @@
     tools:context=".ui.patientlookup.PatientSummaryActivity"
     tools:layout_editor_absoluteY="25dp">
 
-    <no.aspit.aspitcapture.common.CustomActionBar
+    <no.aspit.capture.common.CustomActionBar
         android:id="@+id/customActionBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
