@@ -1,11 +1,11 @@
 package no.aspit.aspitcapture.common
 
 import android.content.Context
-import no.aspit.aspitcapture.ui.uploadsummary.UploadFileType
 import no.aspit.aspitcapture.extention.deleteString
 import no.aspit.aspitcapture.extention.readString
 import no.aspit.aspitcapture.extention.saveString
 import no.aspit.aspitcapture.net.Token
+import no.aspit.aspitcapture.ui.uploadsummary.UploadFileType
 
 class Utils {
     fun getAccessToken(context: Context): Token? {
@@ -36,3 +36,6 @@ fun String.renameFile(type: UploadFileType): String? {
         }
     }
 }
+
+fun getCurrentTime() = System.currentTimeMillis()
+

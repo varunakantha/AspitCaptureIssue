@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import no.aspit.aspitcapture.R
 import no.aspit.aspitcapture.common.renameFile
+import org.joda.time.DateTime
+import org.joda.time.Period
+import org.joda.time.format.PeriodFormatterBuilder
 
 
 class UploadItemAdapter(var list: List<UploadDataModel>, private val itemClickListener: (UploadDataModel) -> Unit) : RecyclerView.Adapter<UploadItemAdapter.ViewHolder>() {
@@ -32,14 +35,29 @@ class UploadItemAdapter(var list: List<UploadDataModel>, private val itemClickLi
         var typeOfFile = view.findViewById<ImageView>(R.id.imageViewFileType)!!
         var fileUploadStatus = view.findViewById<ImageView>(R.id.imageViewUploadStatus)!!
         var thumbNailImageView = view.findViewById<ImageView>(R.id.ImageViewSummaryItemThumbNail)!!
+        var timeUploaded = view.findViewById<TextView>(R.id.textViewTimeUploaded)
 
         fun bind(model: UploadDataModel, listener: (UploadDataModel) -> Unit) {
+            var file = model.file
+
+            var lastModifiedTime: Long = file.lastModified()
+            var period = Period(lastModifiedTime, DateTime().millis)
+            val builder = PeriodFormatterBuilder()
+            if (period.minutes != 0) {
+                builder.appendMinutes().appendSuffix(" minutes ago\n")
+            } else if (period.seconds != 0) {
+                builder.appendSeconds().appendSuffix(" seconds ago\n");
+            }
+            val formatter = builder.printZeroNever().toFormatter()
+            val elapsed = formatter.print(period)
+//            timeUploaded.text = elapsed
+
             var fileType = model.fileType
             when (fileType) {
                 UploadFileType.IMAGE.type -> {
                     fileName.text = model?.name?.renameFile(UploadFileType.IMAGE)
                     typeOfFile.setImageResource(R.drawable.photo_camera_gray)
-                    model.file?.let {
+                    file?.let {
                         Picasso.get()
                                 .load(it.toUri())
                                 .into(thumbNailImageView)

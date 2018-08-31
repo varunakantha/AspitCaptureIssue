@@ -15,11 +15,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
 import kotlinx.android.synthetic.main.activity_upload_summary.*
+import net.danlew.android.joda.JodaTimeAndroid
 import no.aspit.aspitcapture.R
 import no.aspit.aspitcapture.common.BaseActivity
 import no.aspit.aspitcapture.common.CustomActionBar
+import no.aspit.aspitcapture.common.getCurrentTime
 import no.aspit.aspitcapture.ui.imagecapture.CapturedImageDetailsAddActivity
 import no.aspit.aspitcapture.ui.imagecapture.CapturedImageFurtherOptionSelectionActivity
+import org.joda.time.DateTime
 import java.io.File
 import java.io.IOException
 import java.io.Serializable
@@ -44,10 +47,11 @@ class UploadsActivity : BaseActivity(), CustomActionBar.ActionBarListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload_summary)
+        JodaTimeAndroid.init(this)
 
         var uploadDataObject: UploadDataModel? = intent?.extras?.get("upload_data_object") as? UploadDataModel
         uploadDataObject?.let {
-            list?.add(it)
+            if (!list.contains(it)) list?.add(it)
         }
 
         bottomNavigationBar = bottomNavigationViewUploadActivity
@@ -119,6 +123,7 @@ class UploadsActivity : BaseActivity(), CustomActionBar.ActionBarListener {
                 ".jpg", /* suffix */
                 storageDir      /* directory */
         )
+        image.setLastModified(DateTime(getCurrentTime()).millis)
         mCurrentPhotoPath = image.absolutePath
         return image
     }
@@ -149,10 +154,14 @@ class UploadsActivity : BaseActivity(), CustomActionBar.ActionBarListener {
     private fun giveWarning() {
         var alertDialogBuilder = AlertDialog.Builder(this)
         alertDialogBuilder.setTitle("Warning")
-                .setMessage("Do you want to continue?")
-                .setPositiveButton("Yes") { _, _ -> clearDataAndGoBack() }
-                .setNegativeButton("No") { _, _ -> return@setNegativeButton }
+                .setMessage("Upload not complete")
+                .setPositiveButton("Ok") { _, _ -> clearDataAndGoBack() }
+                .setNegativeButton("Cancel") { _, _ -> return@setNegativeButton }
         var dialog = alertDialogBuilder.create()
         dialog.show()
+    }
+
+    override fun onBackPressed() {
+        giveWarning()
     }
 }
