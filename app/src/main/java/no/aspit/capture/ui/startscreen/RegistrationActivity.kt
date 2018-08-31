@@ -2,7 +2,11 @@ package no.aspit.capture.ui.startscreen
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_registration.*
 import no.aspit.capture.BuildConfig
@@ -24,9 +28,21 @@ class RegistrationActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_registration)
-        handle(intent)
+
+        val pinCode = readString(KEY_PIN_CODE)
+
+        if (pinCode.isEmpty()) {
+            handle(intent)
+        } else {
+            if (intent.extras.getBoolean("FROM_BEGINNING", true)) { // from splash activity to registration
+                loginView.visibility = View.VISIBLE
+                registrationView.visibility = View.GONE
+            } else {  // user clicked close button in PatientLookupActivity
+                loginView.visibility = View.GONE
+                registrationView.visibility = View.VISIBLE
+            }
+        }
 
         registerButton.setOnClickListener { v ->
             val pin = userPinCode.text.toString()
@@ -37,10 +53,38 @@ class RegistrationActivity : BaseActivity() {
                     saveString(KEY_PIN_CODE, pin)
                     startActivity(Intent(this@RegistrationActivity, PatientLookUpActivity::class.java))
                     finish()
-                }else {
+                } else {
                     toast(getString(R.string.pin_mismatch), Toast.LENGTH_LONG)
                 }
             }
+        }
+
+        userPinLogin.addTextChangedListener(object : TextWatcher {
+
+            override fun afterTextChanged(s: Editable) {
+                if (s.toString() == pinCode) {
+                    startActivity(Intent(this@RegistrationActivity, PatientLookUpActivity::class.java))
+//                    userPinCode.text = null
+                    finish()
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence, start: Int,
+                                           count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int,
+                                       before: Int, count: Int) {
+            }
+        })
+
+        userPinLogin.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                if (userPinCode.text.toString() != pinCode) {
+                    toast(getString(R.string.incorrect_pin), Toast.LENGTH_LONG)
+                }
+            }
+            true
         }
     }
 
@@ -71,7 +115,9 @@ class RegistrationActivity : BaseActivity() {
                                                 response.body()?.let {
                                                     Utils().saveToken(this@RegistrationActivity, it)
                                                     Log.d(TAG, it.toString())
-                                                    //here we have to show registration form
+
+                                                    loginView.visibility = View.GONE
+                                                    registrationView.visibility = View.VISIBLE
                                                 }
                                             }
                                         }
