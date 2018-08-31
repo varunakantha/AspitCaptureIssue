@@ -10,7 +10,7 @@ android {
     buildToolsVersion "27.0.3"
     compileSdkVersion 28
     defaultConfig {
-        applicationId "no.aspit.aspitcapture"
+        applicationId "no.aspit.capture"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
