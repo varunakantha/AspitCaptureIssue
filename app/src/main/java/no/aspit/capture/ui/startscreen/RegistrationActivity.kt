@@ -15,6 +15,7 @@ import no.aspit.capture.common.BaseActivity
 import no.aspit.capture.common.Constant
 import no.aspit.capture.common.Constant.Companion.KEY_PIN_CODE
 import no.aspit.capture.common.Utils
+import no.aspit.capture.extention.readString
 import no.aspit.capture.extention.saveString
 import no.aspit.capture.extention.toast
 import no.aspit.capture.net.Service
