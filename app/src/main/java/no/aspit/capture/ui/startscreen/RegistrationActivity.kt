@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
@@ -94,7 +93,6 @@ class RegistrationActivity : BaseActivity() {
         intent?.let {
             val data = intent.data
             data?.let {
-                Log.d(TAG, "redirect data" + data.toString())
                 if (it.toString().startsWith(BuildConfig.REDIRECT_URI)) {
                     val code = it.getQueryParameter("code")
                     val error = it.getQueryParameter("error")
@@ -116,7 +114,6 @@ class RegistrationActivity : BaseActivity() {
                                             if (response.isSuccessful) {
                                                 response.body()?.let {
                                                     Utils().saveToken(this@RegistrationActivity, it)
-                                                    Log.d(TAG, it.toString())
 
                                                     loginView.visibility = View.GONE
                                                     registrationView.visibility = View.VISIBLE
@@ -144,17 +141,14 @@ class RegistrationActivity : BaseActivity() {
         Service(this,Utils().getAccessToken(this)?.authToken!!).getUser(
                 object : retrofit2.Callback<String> {
                     override fun onFailure(call: Call<String>, t: Throwable) {
-                        //make medic name null
-                        Log.d("Test", " ** failed")
+
                     }
 
                     override fun onResponse(call: Call<String>, response: Response<String>) {
                         hideProgress()
-                        Log.d("Test", "*** $response.body()")
                         if (response.isSuccessful) {
                             response.body()?.let {
                                 saveString(KEY_MEDIC_NAME,it)
-                                Log.d("Test", it)
                             }
                         }
                     }
