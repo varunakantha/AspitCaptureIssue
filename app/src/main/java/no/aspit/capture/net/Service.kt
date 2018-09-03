@@ -80,6 +80,11 @@ class Service(var context: Context, var accessToken: String = "") {
                 redirectUri
         )!!.enqueue(callback)
     }
+
+    fun getUser(callback: Callback<String>) {
+        generateService(BuildConfig.API_BASE_URL)?.userApi()!!
+                .enqueue(callback)
+    }
     //endregion
 
     fun uploadFile(

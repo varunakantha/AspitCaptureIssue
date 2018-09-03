@@ -13,6 +13,7 @@ import no.aspit.capture.BuildConfig
 import no.aspit.capture.R
 import no.aspit.capture.common.BaseActivity
 import no.aspit.capture.common.Constant
+import no.aspit.capture.common.Constant.Companion.KEY_MEDIC_NAME
 import no.aspit.capture.common.Constant.Companion.KEY_PIN_CODE
 import no.aspit.capture.common.Utils
 import no.aspit.capture.extention.readString
@@ -119,6 +120,7 @@ class RegistrationActivity : BaseActivity() {
 
                                                     loginView.visibility = View.GONE
                                                     registrationView.visibility = View.VISIBLE
+                                                    getMedicUser()
                                                 }
                                             }
                                         }
@@ -135,6 +137,28 @@ class RegistrationActivity : BaseActivity() {
                 }
             }
         }
+    }
+
+
+    fun getMedicUser(){
+        Service(this,Utils().getAccessToken(this)?.authToken!!).getUser(
+                object : retrofit2.Callback<String> {
+                    override fun onFailure(call: Call<String>, t: Throwable) {
+                        //make medic name null
+                        Log.d("Test", " ** failed")
+                    }
+
+                    override fun onResponse(call: Call<String>, response: Response<String>) {
+                        hideProgress()
+                        Log.d("Test", "*** $response.body()")
+                        if (response.isSuccessful) {
+                            response.body()?.let {
+                                saveString(KEY_MEDIC_NAME,it)
+                                Log.d("Test", it)
+                            }
+                        }
+                    }
+                })
     }
 
 }
