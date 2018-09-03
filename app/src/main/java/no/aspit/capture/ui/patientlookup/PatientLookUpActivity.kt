@@ -9,7 +9,9 @@ import kotlinx.android.synthetic.main.activity_patient_look_up.*
 import kotlinx.android.synthetic.main.custom_action_bar.view.*
 import no.aspit.capture.R
 import no.aspit.capture.common.BaseActivity
+import no.aspit.capture.common.Constant
 import no.aspit.capture.common.CustomActionBar
+import no.aspit.capture.extention.readString
 import no.aspit.capture.ui.startscreen.RegistrationActivity
 
 class PatientLookUpActivity : BaseActivity(), CustomActionBar.ActionBarListener {
@@ -41,6 +43,8 @@ class PatientLookUpActivity : BaseActivity(), CustomActionBar.ActionBarListener 
         customActionBar.text_logout.setOnClickListener { _ ->
             onClose()
         }
+
+        customActionBar.mainTitle.text = readString(Constant.KEY_MEDIC_NAME)
     }
 
     override fun onClose() {
@@ -49,4 +53,5 @@ class PatientLookUpActivity : BaseActivity(), CustomActionBar.ActionBarListener 
         startActivity(intent)
         finish()
     }
+
 }
