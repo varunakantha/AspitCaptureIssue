@@ -38,13 +38,13 @@ class PatientLookUpActivity : BaseActivity(), CustomActionBar.ActionBarListener 
                 if (s.length == SSN_LENGTH) {
                     Service(this@PatientLookUpActivity,
                             Utils().getAccessToken(this@PatientLookUpActivity)!!.authToken)
-                            .getPatientBySSN(object : Callback<Patient> {
+                            .getPatientBySSN(s.toString(), object : Callback<Patient> {
                                 override fun onFailure(call: Call<Patient>?, t: Throwable?) {
                                     toast("Cannot find a patient with that SSN")
                                 }
 
                                 override fun onResponse(call: Call<Patient>?, response: Response<Patient>?) {
-                                    if (response!!.isSuccessful){
+                                    if (response!!.isSuccessful) {
                                         response.body()?.firstName?.let { toast(it) }
                                         startActivity(Intent(this@PatientLookUpActivity, PatientSummaryActivity::class.java))
                                         patientSSN.text = null
