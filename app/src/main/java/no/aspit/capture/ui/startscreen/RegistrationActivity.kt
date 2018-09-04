@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
@@ -13,6 +12,7 @@ import no.aspit.capture.BuildConfig
 import no.aspit.capture.R
 import no.aspit.capture.common.BaseActivity
 import no.aspit.capture.common.Constant
+import no.aspit.capture.common.Constant.Companion.KEY_MEDIC_NAME
 import no.aspit.capture.common.Constant.Companion.KEY_PIN_CODE
 import no.aspit.capture.common.Utils
 import no.aspit.capture.extention.readString
@@ -93,7 +93,6 @@ class RegistrationActivity : BaseActivity() {
         intent?.let {
             val data = intent.data
             data?.let {
-                Log.d(TAG, "redirect data" + data.toString())
                 if (it.toString().startsWith(BuildConfig.REDIRECT_URI)) {
                     val code = it.getQueryParameter("code")
                     val error = it.getQueryParameter("error")
@@ -115,10 +114,10 @@ class RegistrationActivity : BaseActivity() {
                                             if (response.isSuccessful) {
                                                 response.body()?.let {
                                                     Utils().saveToken(this@RegistrationActivity, it)
-                                                    Log.d(TAG, it.toString())
 
                                                     loginView.visibility = View.GONE
                                                     registrationView.visibility = View.VISIBLE
+                                                    getMedicUser()
                                                 }
                                             }
                                         }
@@ -135,6 +134,25 @@ class RegistrationActivity : BaseActivity() {
                 }
             }
         }
+    }
+
+
+    fun getMedicUser(){
+        Service(this,Utils().getAccessToken(this)?.authToken!!).getUser(
+                object : retrofit2.Callback<String> {
+                    override fun onFailure(call: Call<String>, t: Throwable) {
+
+                    }
+
+                    override fun onResponse(call: Call<String>, response: Response<String>) {
+                        hideProgress()
+                        if (response.isSuccessful) {
+                            response.body()?.let {
+                                saveString(KEY_MEDIC_NAME,it)
+                            }
+                        }
+                    }
+                })
     }
 
 }
