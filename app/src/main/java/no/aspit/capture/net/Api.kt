@@ -1,6 +1,5 @@
 package no.aspit.capture.net
 
-import no.aspit.capture.ui.patientlookup.Patient
 import retrofit2.Call
 import retrofit2.http.*
 
