@@ -12,7 +12,7 @@ data class Token(
         @Json(name = "token_type") val tokenType: String
 ) {
     fun isValid(): Boolean {
-        return authToken.isNotEmpty()!! && authToken.isNotBlank()!!
+        return authToken.isNotEmpty() && authToken.isNotBlank()
     }
 }
 
