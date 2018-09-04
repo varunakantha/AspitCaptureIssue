@@ -15,8 +15,8 @@ interface Api {
             @Field("redirect_uri") redirectUri: String
     ): Call<Token>
 
-    @GET
-    fun getPatientBySSN(): Call<Patient>
+    @GET("api/person/lookup")
+    fun getPatientBySSN(@Query("ssn") ssn: String): Call<Patient>
 
     @GET("api/user")
     fun userApi(
