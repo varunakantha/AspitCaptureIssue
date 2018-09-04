@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import kotlinx.android.synthetic.main.activity_patient_look_up.*
+import kotlinx.android.synthetic.main.custom_action_bar.view.*
 import no.aspit.capture.R
 import no.aspit.capture.common.BaseActivity
 import no.aspit.capture.common.CustomActionBar
@@ -32,6 +34,13 @@ class PatientLookUpActivity : BaseActivity(), CustomActionBar.ActionBarListener 
                 }
             }
         })
+
+        // Move visibility to CustomActionBar class
+        customActionBar.closeView.visibility = View.GONE
+        customActionBar.text_logout.visibility = View.VISIBLE
+        customActionBar.text_logout.setOnClickListener { _ ->
+            onClose()
+        }
     }
 
     override fun onClose() {
