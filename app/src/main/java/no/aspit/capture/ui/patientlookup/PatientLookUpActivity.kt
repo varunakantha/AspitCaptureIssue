@@ -17,6 +17,7 @@ import no.aspit.capture.ui.startscreen.RegistrationActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import no.aspit.capture.net.Patient
 
 class PatientLookUpActivity : BaseActivity(), CustomActionBar.ActionBarListener {
     val SSN_LENGTH = 11
