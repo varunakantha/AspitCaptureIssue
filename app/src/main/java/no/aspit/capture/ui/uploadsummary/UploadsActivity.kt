@@ -16,16 +16,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
 import kotlinx.android.synthetic.main.activity_upload_summary.*
 import net.danlew.android.joda.JodaTimeAndroid
-import no.aspit.aspitcapture.R
-import no.aspit.aspitcapture.common.BaseActivity
-import no.aspit.aspitcapture.common.CustomActionBar
-import no.aspit.aspitcapture.common.getCurrentTime
-import no.aspit.aspitcapture.ui.imagecapture.CapturedImageDetailsAddActivity
-import no.aspit.aspitcapture.ui.imagecapture.CapturedImageFurtherOptionSelectionActivity
 import org.joda.time.DateTime
 import no.aspit.capture.R
 import no.aspit.capture.common.BaseActivity
 import no.aspit.capture.common.CustomActionBar
+import no.aspit.capture.common.getCurrentTime
 import no.aspit.capture.ui.imagecapture.CapturedImageDetailsAddActivity
 import no.aspit.capture.ui.imagecapture.CapturedImageFurtherOptionSelectionActivity
 import java.io.File

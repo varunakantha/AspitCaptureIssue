@@ -1,11 +1,6 @@
 package no.aspit.capture.common
 
 import android.content.Context
-import no.aspit.aspitcapture.extention.deleteString
-import no.aspit.aspitcapture.extention.readString
-import no.aspit.aspitcapture.extention.saveString
-import no.aspit.aspitcapture.net.Token
-import no.aspit.aspitcapture.ui.uploadsummary.UploadFileType
 import no.aspit.capture.ui.uploadsummary.UploadFileType
 import no.aspit.capture.extention.deleteString
 import no.aspit.capture.extention.readString
