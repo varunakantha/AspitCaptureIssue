@@ -4,6 +4,7 @@ import android.content.Context
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import no.aspit.capture.BuildConfig
+import no.aspit.capture.ui.patientlookup.Patient
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -84,6 +85,10 @@ class Service(var context: Context, var accessToken: String = "") {
     fun getUser(callback: Callback<String>) {
         generateService(BuildConfig.API_BASE_URL)?.userApi()!!
                 .enqueue(callback)
+    }
+
+    fun getPatientBySSN(callback: Callback<Patient>){
+        generateService(BuildConfig.API_BASE_URL)?.getPatientBySSN()!!.enqueue(callback)
     }
     //endregion
 
