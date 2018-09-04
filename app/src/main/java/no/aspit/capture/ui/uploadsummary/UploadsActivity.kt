@@ -1,6 +1,7 @@
 package no.aspit.capture.ui.uploadsummary
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Environment
@@ -43,11 +44,13 @@ class UploadsActivity : BaseActivity(), CustomActionBar.ActionBarListener {
     lateinit var imageTextView: TextView
     lateinit var nothingToHereTextView: TextView
     private lateinit var mCurrentPhotoPath: String
+    private lateinit var context: Context
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload_summary)
         JodaTimeAndroid.init(this)
+        context = this
 
         var uploadDataObject: UploadDataModel? = intent?.extras?.get("upload_data_object") as? UploadDataModel
         uploadDataObject?.let {

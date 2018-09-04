@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.net.toUri
 import com.squareup.picasso.Picasso
+import id.zelory.compressor.Compressor
 import kotlinx.android.synthetic.main.activity_captured_image_further_options.*
 import no.aspit.capture.R
 import no.aspit.capture.common.BaseActivity
@@ -35,7 +36,7 @@ class CapturedImageFurtherOptionSelectionActivity : BaseActivity(), CustomAction
         sendBackground = sendButtonBackground
 
         imagePath = intent?.getStringExtra("image_file_path")!!
-        file = File(imagePath)
+        file = Compressor(this).compressToFile(File(imagePath!!))
         file?.let {
             Picasso.get()
                     .load(it.toUri())

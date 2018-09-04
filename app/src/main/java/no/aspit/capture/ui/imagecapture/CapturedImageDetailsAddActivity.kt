@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
 import com.squareup.picasso.Picasso
+import id.zelory.compressor.Compressor
 import kotlinx.android.synthetic.main.captured_image_add_details.*
 import no.aspit.capture.R
 import no.aspit.capture.common.BaseActivity
@@ -49,8 +50,8 @@ class CapturedImageDetailsAddActivity : BaseActivity(), CustomActionBar.ActionBa
     }
 
     private fun editableModeOn() {
-        imagePath = intent.getStringExtra("image_file_path")
-        file = File(imagePath)
+        imagePath = intent.getStringExtra("image_file_path")!!
+        file = Compressor(this).compressToFile(File(imagePath!!))
         var fileName: String = file?.name?.toString()!!
         fileName = fileName?.renameFile(UploadFileType.IMAGE)!!
         imageTitle.text = fileName
@@ -73,7 +74,8 @@ class CapturedImageDetailsAddActivity : BaseActivity(), CustomActionBar.ActionBa
         imageCommentEdit.setText(uploadDataObject.comment)
         imageTitle.text = uploadDataObject?.file?.name?.toString()?.renameFile(UploadFileType.IMAGE)
         lock.visibility = View.VISIBLE
-        uploadDataObject.file?.let {
+        var file = Compressor(this).compressToFile(uploadDataObject?.file!!)
+        file?.let {
             Picasso.get()
                     .load(it.toUri())
                     .into(capturedImage)
