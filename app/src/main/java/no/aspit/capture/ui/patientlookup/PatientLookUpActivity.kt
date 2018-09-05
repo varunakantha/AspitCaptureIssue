@@ -42,16 +42,19 @@ class PatientLookUpActivity : BaseActivity(), CustomActionBar.ActionBarListener 
             override fun onTextChanged(s: CharSequence, start: Int,
                                        before: Int, count: Int) {
                 if (s.length == SSN_LENGTH) {
+                    showProgress()
                     Service(this@PatientLookUpActivity,
                             Utils().getAccessToken(this@PatientLookUpActivity)!!.authToken)
                             .getPatientBySSN(s.toString(), object : Callback<Patient> {
                                 override fun onFailure(call: Call<Patient>?, t: Throwable?) {
+                                    hideProgress()
                                     toast("Cannot find a patient with that SSN")
                                 }
 
                                 override fun onResponse(call: Call<Patient>?, response: Response<Patient>?) {
+                                    hideProgress()
                                     if (response!!.isSuccessful) {
-                                        response.body()?.let { saveString(KEY_PATIENT_OBJECT,JsonParser().patientToJson(it)) }
+                                        response.body()?.let { saveString(KEY_PATIENT_OBJECT, JsonParser().patientToJson(it)) }
                                         startActivity(Intent(this@PatientLookUpActivity, PatientSummaryActivity::class.java))
                                         patientSSN.text = null
                                     } else {
@@ -75,7 +78,6 @@ class PatientLookUpActivity : BaseActivity(), CustomActionBar.ActionBarListener 
 
     override fun onClose() {
         val intent = Intent(this@PatientLookUpActivity, RegistrationActivity::class.java)
-        intent.putExtra("FROM_BEGINNING", false)
         startActivity(intent)
         finish()
     }

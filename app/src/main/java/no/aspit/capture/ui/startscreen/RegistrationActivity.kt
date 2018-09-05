@@ -27,22 +27,18 @@ import retrofit2.Response
 
 class RegistrationActivity : BaseActivity() {
 
+    lateinit var pinCode: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
 
-        val pinCode = readString(KEY_PIN_CODE)
+        pinCode = readString(KEY_PIN_CODE)
 
-        if (pinCode.isEmpty()) {
-            handle(intent)
+        if (authenticator.checkForToken()) {
+            setRegisterAndLogin(pinCode)
         } else {
-            if (intent.extras.getBoolean("FROM_BEGINNING", true)) { // from splash activity to registration
-                loginView.visibility = View.VISIBLE
-                registrationView.visibility = View.GONE
-            } else {  // user clicked close button in PatientLookupActivity
-                loginView.visibility = View.GONE
-                registrationView.visibility = View.VISIBLE
-            }
+            handle(intent)
         }
 
         registerButton.setOnClickListener { v ->
@@ -65,7 +61,6 @@ class RegistrationActivity : BaseActivity() {
             override fun afterTextChanged(s: Editable) {
                 if (s.toString() == pinCode) {
                     startActivity(Intent(this@RegistrationActivity, PatientLookUpActivity::class.java))
-//                    userPinCode.text = null
                     finish()
                 }
             }
@@ -86,6 +81,17 @@ class RegistrationActivity : BaseActivity() {
                 }
             }
             true
+        }
+    }
+
+    fun setRegisterAndLogin(pinCode: String) {
+
+        if (intent.getBooleanExtra("FROM_BEGINNING", true) && !pinCode.isEmpty()) { // from splash activity to registration
+            loginView.visibility = View.VISIBLE
+            registrationView.visibility = View.GONE
+        } else {  // user clicked close button in PatientLookupActivity
+            loginView.visibility = View.GONE
+            registrationView.visibility = View.VISIBLE
         }
     }
 
@@ -115,8 +121,7 @@ class RegistrationActivity : BaseActivity() {
                                                 response.body()?.let {
                                                     Utils().saveToken(this@RegistrationActivity, it)
 
-                                                    loginView.visibility = View.GONE
-                                                    registrationView.visibility = View.VISIBLE
+                                                    setRegisterAndLogin(pinCode)
                                                     getMedicUser()
                                                 }
                                             }
@@ -137,18 +142,19 @@ class RegistrationActivity : BaseActivity() {
     }
 
 
-    fun getMedicUser(){
-        Service(this,Utils().getAccessToken(this)?.authToken!!).getUser(
+    fun getMedicUser() {
+        showProgress()
+        Service(this, Utils().getAccessToken(this)?.authToken!!).getUser(
                 object : retrofit2.Callback<String> {
                     override fun onFailure(call: Call<String>, t: Throwable) {
-
+                        hideProgress()
                     }
 
                     override fun onResponse(call: Call<String>, response: Response<String>) {
                         hideProgress()
                         if (response.isSuccessful) {
                             response.body()?.let {
-                                saveString(KEY_MEDIC_NAME,it)
+                                saveString(KEY_MEDIC_NAME, it)
                             }
                         }
                     }
