@@ -3,6 +3,7 @@ package no.aspit.capture.net
 import retrofit2.Call
 import retrofit2.http.*
 
+
 interface Api {
 
     @FormUrlEncoded
@@ -13,6 +14,10 @@ interface Api {
             @Field("client_id") clientId: String,
             @Field("redirect_uri") redirectUri: String
     ): Call<Token>
+
+    @GET("api/person/lookup")
+    fun getPatientBySSN(@Query("ssn") ssn: String): Call<Patient>
+
 
     @GET("api/user")
     fun userApi(
