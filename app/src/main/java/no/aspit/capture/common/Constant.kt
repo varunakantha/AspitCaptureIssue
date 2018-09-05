@@ -17,5 +17,6 @@ class Constant {
         val KEY_AUTH_TOKEN = "key_auth_token"
         val KEY_MEDIC_NAME = "key_medic_name"
 
+        val KEY_PATIENT_OBJECT = "key_patient_object"
     }
 }
