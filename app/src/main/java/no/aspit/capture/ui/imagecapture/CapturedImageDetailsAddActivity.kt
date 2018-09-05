@@ -10,10 +10,10 @@ import android.widget.TextView
 import androidx.core.net.toUri
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.captured_image_add_details.*
+import kotlinx.android.synthetic.main.custom_action_bar.view.*
 import no.aspit.capture.R
-import no.aspit.capture.common.BaseActivity
-import no.aspit.capture.common.CustomActionBar
-import no.aspit.capture.common.renameFile
+import no.aspit.capture.common.*
+import no.aspit.capture.extention.readString
 import no.aspit.capture.ui.uploadsummary.UploadDataModel
 import no.aspit.capture.ui.uploadsummary.UploadFileType
 import no.aspit.capture.ui.uploadsummary.UploadsActivity
@@ -24,19 +24,23 @@ lateinit var imagePath: String
 lateinit var uploadDataObject: UploadDataModel
 lateinit var file: File
 
-lateinit var capturedImage: ImageView
-lateinit var imageTitle: TextView
-lateinit var imageTitleEdit: EditText
-lateinit var imageCommentEdit: EditText
-lateinit var confirmButton: Button
-lateinit var lock: ImageView
 var editableMode: Int = 0
 
 class CapturedImageDetailsAddActivity : BaseActivity(), CustomActionBar.ActionBarListener {
 
+    lateinit var capturedImage: ImageView
+    lateinit var imageTitle: TextView
+    lateinit var imageTitleEdit: EditText
+    lateinit var imageCommentEdit: EditText
+    lateinit var confirmButton: Button
+    lateinit var lock: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.captured_image_add_details)
+
+        fillPatientData()
+
         capturedImage = capturedImageView
         imageTitle = imageFileNameTextView
         imageTitleEdit = imageTitleEditText
@@ -46,6 +50,12 @@ class CapturedImageDetailsAddActivity : BaseActivity(), CustomActionBar.ActionBa
         editableMode = intent?.getIntExtra("editable", 0)!!
 
         if (editableMode == 0) editableModeOff() else editableModeOn()
+    }
+
+    private fun fillPatientData() {
+        val patient = JsonParser().toPatient(readString(Constant.KEY_PATIENT_OBJECT))
+        actionbarImageDetails.mainTitle.text = patient?.firstName + " " + patient?.lastName
+        actionbarImageDetails.subTitle.text = patient?.nin
     }
 
     private fun editableModeOn() {

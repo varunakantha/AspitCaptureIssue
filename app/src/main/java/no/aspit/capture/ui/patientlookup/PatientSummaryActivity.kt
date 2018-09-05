@@ -17,15 +17,18 @@ class PatientSummaryActivity : BaseActivity(),CustomActionBar.ActionBarListener 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient_summary)
 
-        val patient = JsonParser().toPatient(readString(KEY_PATIENT_OBJECT))
-
-        patient_name.text = patient?.firstName + " " + patient?.lastName
-        patient_ssn.text = patient?.nin
+        fillPatientData()
 
         patientSummaryConfirm.setOnClickListener { v ->
             startActivity(Intent(this@PatientSummaryActivity, UploadsActivity::class.java))
             finish()
         }
+    }
+
+    private fun fillPatientData() {
+        val patient = JsonParser().toPatient(readString(KEY_PATIENT_OBJECT))
+        patient_name.text = patient?.firstName + " " + patient?.lastName
+        patient_ssn.text = patient?.nin
     }
 
     override fun onClose() {
