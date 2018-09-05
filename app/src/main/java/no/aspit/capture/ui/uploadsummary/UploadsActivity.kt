@@ -16,12 +16,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
 import kotlinx.android.synthetic.main.activity_upload_summary.*
+import kotlinx.android.synthetic.main.custom_action_bar.view.*
 import net.danlew.android.joda.JodaTimeAndroid
 import org.joda.time.DateTime
 import no.aspit.capture.R
-import no.aspit.capture.common.BaseActivity
-import no.aspit.capture.common.CustomActionBar
-import no.aspit.capture.common.getCurrentTime
+import no.aspit.capture.common.*
+import no.aspit.capture.extention.readString
 import no.aspit.capture.ui.imagecapture.CapturedImageDetailsAddActivity
 import no.aspit.capture.ui.imagecapture.CapturedImageFurtherOptionSelectionActivity
 import java.io.File
@@ -52,6 +52,8 @@ class UploadsActivity : BaseActivity(), CustomActionBar.ActionBarListener {
         JodaTimeAndroid.init(this)
         context = this
 
+        fillPatientData()
+
         var uploadDataObject: UploadDataModel? = intent?.extras?.get("upload_data_object") as? UploadDataModel
         uploadDataObject?.let {
             if (!list.contains(it)) list?.add(it)
@@ -62,7 +64,7 @@ class UploadsActivity : BaseActivity(), CustomActionBar.ActionBarListener {
         nothingToHereTextView = nothingToSeeHereTextView
         recyclerView = recyclerViewUploadItems
         recyclerView.hasFixedSize()
-        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false) as RecyclerView.LayoutManager?
+        recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
 
         if (list?.size != 0) {
             imageTextView.visibility = View.GONE
@@ -76,6 +78,12 @@ class UploadsActivity : BaseActivity(), CustomActionBar.ActionBarListener {
         recyclerView.adapter = adapter
 
 
+    }
+
+    private fun fillPatientData() {
+        val patient = JsonParser().toPatient(readString(Constant.KEY_PATIENT_OBJECT))
+        actionbarUploads.mainTitle.text = patient?.firstName + " " + patient?.lastName
+        actionbarUploads.subTitle.text = patient?.nin
     }
 
     private fun partItemClicked(uploadDataModel: UploadDataModel) {
