@@ -15,5 +15,8 @@ class Constant {
         val LOCAL_STORAGE_NAME = "aspit_capture_local"
         val KEY_PIN_CODE = "key_pin_code"
         val KEY_AUTH_TOKEN = "key_auth_token"
+        val KEY_MEDIC_NAME = "key_medic_name"
+
+        val KEY_PATIENT_OBJECT = "key_patient_object"
     }
 }
