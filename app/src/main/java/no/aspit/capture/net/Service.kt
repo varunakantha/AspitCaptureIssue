@@ -90,13 +90,13 @@ class Service(var context: Context, var accessToken: String = "") {
         )!!.enqueue(callback)
     }
 
-    fun getPatientBySSN(ssn: String, callback: Callback<Patient>) {
-        generateService(BuildConfig.API_BASE_URL)?.getPatientBySSN(ssn)!!.enqueue(callback)
-    }
-
     fun getUser(callback: Callback<String>) {
         generateService(BuildConfig.API_BASE_URL)?.userApi()!!
                 .enqueue(callback)
+    }
+
+    fun getPatientBySSN(ssn: String, callback: Callback<Patient>){
+        generateService(BuildConfig.API_BASE_URL)?.getPatientBySSN(ssn)!!.enqueue(callback)
     }
     //endregion
 

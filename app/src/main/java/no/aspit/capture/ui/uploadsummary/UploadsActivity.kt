@@ -54,6 +54,8 @@ class UploadsActivity : BaseActivity(), CustomActionBar.ActionBarListener {
 
         fillPatientData()
 
+        fillPatientData()
+
         var uploadDataObject: UploadDataModel? = intent?.extras?.get("upload_data_object") as? UploadDataModel
         uploadDataObject?.let {
             if (!list.contains(it)) list?.add(it)

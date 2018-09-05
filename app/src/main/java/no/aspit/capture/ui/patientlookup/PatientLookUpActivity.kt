@@ -54,7 +54,7 @@ class PatientLookUpActivity : BaseActivity(), CustomActionBar.ActionBarListener 
                                 override fun onResponse(call: Call<Patient>?, response: Response<Patient>?) {
                                     hideProgress()
                                     if (response!!.isSuccessful) {
-                                        response.body()?.firstName?.let { toast(it) }
+                                        response.body()?.let { saveString(KEY_PATIENT_OBJECT, JsonParser().patientToJson(it)) }
                                         startActivity(Intent(this@PatientLookUpActivity, PatientSummaryActivity::class.java))
                                         patientSSN.text = null
                                     } else {
@@ -82,5 +82,4 @@ class PatientLookUpActivity : BaseActivity(), CustomActionBar.ActionBarListener 
         startActivity(intent)
         finish()
     }
-
 }

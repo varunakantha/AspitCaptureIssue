@@ -15,12 +15,9 @@ import id.zelory.compressor.Compressor
 import kotlinx.android.synthetic.main.captured_image_add_details.*
 import kotlinx.android.synthetic.main.custom_action_bar.view.*
 import no.aspit.capture.R
-import no.aspit.capture.common.BaseActivity
-import no.aspit.capture.common.CustomActionBar
-import no.aspit.capture.common.renameFile
-import no.aspit.capture.net.Service
 import no.aspit.capture.common.*
 import no.aspit.capture.extention.readString
+import no.aspit.capture.net.Service
 import no.aspit.capture.ui.uploadsummary.UploadDataModel
 import no.aspit.capture.ui.uploadsummary.UploadFileType
 import no.aspit.capture.ui.uploadsummary.UploadsActivity
@@ -35,15 +32,16 @@ lateinit var imagePath: String
 lateinit var uploadDataObject: UploadDataModel
 lateinit var file: File
 
-lateinit var capturedImage: ImageView
-lateinit var imageTitle: TextView
-lateinit var imageTitleEdit: EditText
-lateinit var imageCommentEdit: EditText
-lateinit var confirmButton: Button
-lateinit var lock: ImageView
 var editableMode: Int = 0
 
 class CapturedImageDetailsAddActivity : BaseActivity(), CustomActionBar.ActionBarListener {
+
+    lateinit var capturedImage: ImageView
+    lateinit var imageTitle: TextView
+    lateinit var imageTitleEdit: EditText
+    lateinit var imageCommentEdit: EditText
+    lateinit var confirmButton: Button
+    lateinit var lock: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
