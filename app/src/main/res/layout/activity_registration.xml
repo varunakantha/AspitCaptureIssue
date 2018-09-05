@@ -38,13 +38,12 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/login_bg"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55"
-        android:visibility="gone"
-        >
+        app:layout_constraintVertical_bias="0.55">
 
         <EditText
             android:id="@+id/confirmPinCode"
@@ -53,15 +52,17 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
-            android:paddingStart="8dp"
             android:background="@drawable/rounded_edittext"
             android:ems="10"
             android:fontFamily="@font/open_sans_regular"
-            android:inputType="textPersonName|numberSigned"
+            android:inputType="numberPassword"
+            android:maxLength="4"
+            android:paddingStart="8dp"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView11"/>
+            app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
         <TextView
             android:id="@+id/textView9"
@@ -73,7 +74,7 @@
             android:textColor="@color/black"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView10"
@@ -87,7 +88,7 @@
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView9"/>
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
         <EditText
             android:id="@+id/userPinCode"
@@ -100,13 +101,15 @@
             android:ems="10"
             android:fontFamily="@font/open_sans_regular"
             android:imeOptions="actionNext"
-            android:inputType="textPersonName|numberSigned"
+            android:inputType="numberPassword"
+            android:maxLength="4"
             android:paddingStart="8dp"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView10">
 
-            <requestFocus/>
+            <requestFocus />
         </EditText>
 
         <TextView
@@ -121,7 +124,7 @@
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userPinCode"/>
+            app:layout_constraintTop_toBottomOf="@+id/userPinCode" />
 
         <Button
             android:id="@+id/registerButton"
@@ -138,8 +141,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/confirmPinCode"
             app:layout_constraintStart_toStartOf="@+id/confirmPinCode"
-            app:layout_constraintTop_toBottomOf="@+id/confirmPinCode"/>
-
+            app:layout_constraintTop_toBottomOf="@+id/confirmPinCode" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -153,12 +155,12 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/login_bg"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45"
-        android:visibility="gone">
+        app:layout_constraintVertical_bias="0.45">
 
         <TextView
             android:id="@+id/textLogin"
@@ -171,7 +173,7 @@
             android:textColor="@color/black"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textPin"
@@ -183,7 +185,7 @@
             android:text="@string/pin_code"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textLogin"/>
+            app:layout_constraintTop_toBottomOf="@+id/textLogin" />
 
         <EditText
             android:id="@+id/userPinLogin"
@@ -195,12 +197,13 @@
             android:background="@drawable/rounded_edittext"
             android:ems="10"
             android:fontFamily="@font/open_sans_regular"
-            android:inputType="textPersonName|numberSigned"
+            android:inputType="numberPassword"
             android:maxLength="4"
             android:paddingStart="8dp"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textPin"/>
+            app:layout_constraintTop_toBottomOf="@+id/textPin" />
 
         <TextView
             android:id="@+id/textTouch"
@@ -213,8 +216,7 @@
             android:text="@string/or_use_touch_id"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userPinLogin"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/userPinLogin" />
 
         <ImageView
             android:id="@+id/imageView4"
@@ -224,7 +226,7 @@
             app:layout_constraintEnd_toEndOf="@+id/textTouch"
             app:layout_constraintStart_toStartOf="@+id/textTouch"
             app:layout_constraintTop_toBottomOf="@+id/textTouch"
-            app:srcCompat="@drawable/ic_fingerprint"/>
+            app:srcCompat="@drawable/ic_fingerprint" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
