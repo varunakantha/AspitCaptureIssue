@@ -81,4 +81,23 @@ class Service(var context: Context, var accessToken: String = "") {
         )!!.enqueue(callback)
     }
     //endregion
+
+    fun uploadFile(
+            nin: String,
+            data: String,
+            assetType: String,
+            title: String,
+            note: String,
+            comment: String,
+            callback: Callback<String>
+    ) {
+        generateService(BuildConfig.API_BASE_URL)?.uploadFile(
+                nin,
+                data,
+                assetType,
+                title,
+                note,
+                comment
+        )!!.enqueue(callback)
+    }
 }
