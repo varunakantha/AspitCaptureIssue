@@ -4,6 +4,8 @@ import android.content.Context
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import no.aspit.capture.BuildConfig
+import no.aspit.capture.common.BaseActivity
+import okhttp3.Authenticator
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -36,6 +38,13 @@ class Service(var context: Context, var accessToken: String = "") {
                         val request = requestBuilder.build()
                         chain.proceed(request)
                     }
+                    .authenticator(Authenticator { route, response ->
+                        if (response.code() == 401) {
+                            val baseActivity = context as BaseActivity
+                            baseActivity.logout()
+                            return@Authenticator null
+                        } else response.request()
+                    })
                     .addInterceptor(HttpLoggingInterceptor().apply {
                         level = HttpLoggingInterceptor.Level.BODY
                     })
