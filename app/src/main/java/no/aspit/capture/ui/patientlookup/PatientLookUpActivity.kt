@@ -9,8 +9,11 @@ import kotlinx.android.synthetic.main.activity_patient_look_up.*
 import kotlinx.android.synthetic.main.custom_action_bar.view.*
 import no.aspit.capture.R
 import no.aspit.capture.common.BaseActivity
+import no.aspit.capture.common.Constant.Companion.KEY_PATIENT_OBJECT
 import no.aspit.capture.common.CustomActionBar
+import no.aspit.capture.common.JsonParser
 import no.aspit.capture.common.Utils
+import no.aspit.capture.extention.saveString
 import no.aspit.capture.extention.toast
 import no.aspit.capture.net.Service
 import no.aspit.capture.ui.startscreen.RegistrationActivity
@@ -46,7 +49,7 @@ class PatientLookUpActivity : BaseActivity(), CustomActionBar.ActionBarListener 
 
                                 override fun onResponse(call: Call<Patient>?, response: Response<Patient>?) {
                                     if (response!!.isSuccessful) {
-                                        response.body()?.firstName?.let { toast(it) }
+                                        response.body()?.let { saveString(KEY_PATIENT_OBJECT,JsonParser().patientToJson(it)) }
                                         startActivity(Intent(this@PatientLookUpActivity, PatientSummaryActivity::class.java))
                                         patientSSN.text = null
                                     } else {
