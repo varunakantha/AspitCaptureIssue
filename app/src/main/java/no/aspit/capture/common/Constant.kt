@@ -18,5 +18,11 @@ class Constant {
         val KEY_MEDIC_NAME = "key_medic_name"
 
         val KEY_PATIENT_OBJECT = "key_patient_object"
+
+        val TYPE_IMAGE = "jpg"
+        val IMAGE_DATA_OBJECT = "upload_data_object"
+        val IMAGE_PATH = "image_file_path"
+        val EDITABLE_MODE = "editable"
+
     }
 }

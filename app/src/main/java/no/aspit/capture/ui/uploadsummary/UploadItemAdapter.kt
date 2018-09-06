@@ -80,6 +80,9 @@ class UploadItemAdapter(var list: List<UploadDataModel>, private val itemClickLi
                 UploadStatus.COMPLETED.status -> {
                     fileUploadStatus.setImageResource(R.drawable.upload_completed_green)
                 }
+                UploadStatus.FAILED.status -> {
+                    fileUploadStatus.setImageResource(R.drawable.ic_retry)
+                }
             }
             itemView.setOnClickListener { listener(model) }
         }

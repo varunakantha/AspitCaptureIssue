@@ -7,6 +7,8 @@ enum class UploadFileType(val type: Int) {
 }
 
 enum class UploadStatus(val status: Int) {
-    UPLOADING(0),
-    COMPLETED(1)
+    UPLOADING(2),
+    COMPLETED(1),
+    FAILED(0),
+    QUEUE(3)
 }

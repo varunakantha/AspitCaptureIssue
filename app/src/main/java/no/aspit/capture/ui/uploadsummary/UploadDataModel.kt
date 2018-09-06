@@ -1,7 +1,10 @@
 package no.aspit.capture.ui.uploadsummary
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+import no.aspit.capture.net.Upload
 import java.io.File
-import java.io.Serializable
 
-data class UploadDataModel(val name: String, val status: Int, val fileType: Int, var file: File, var title: String, var comment: String) : Serializable {
-}
+
+@Parcelize
+data class UploadDataModel(val upload: Upload, val name: String, var status: Int, val fileType: Int, var file: File) : Parcelable
