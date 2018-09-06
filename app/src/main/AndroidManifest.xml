@@ -28,11 +28,13 @@
 
         <activity
             android:name=".ui.patientlookup.PatientLookUpActivity"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".ui.imagecapture.CapturedImageDetailsAddActivity"
-        android:windowSoftInputMode="stateAlwaysHidden"/><activity android:name=".ui.imagecapture.CapturedImageFurtherOptionSelectionActivity"/>
-        <activity android:name=".ui.uploadsummary.UploadsActivity"/>
-        <activity android:name=".ui.patientlookup.PatientSummaryActivity"/>
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.imagecapture.CapturedImageDetailsAddActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name=".ui.imagecapture.CapturedImageFurtherOptionSelectionActivity" />
+        <activity android:name=".ui.uploadsummary.UploadsActivity" />
+        <activity android:name=".ui.patientlookup.PatientSummaryActivity" />
         <activity android:name=".ui.startscreen.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

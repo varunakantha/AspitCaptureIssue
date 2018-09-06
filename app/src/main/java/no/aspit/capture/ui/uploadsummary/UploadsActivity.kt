@@ -5,10 +5,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Environment
+import android.os.Parcelable
 import android.provider.MediaStore
 import android.view.MenuItem
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.FileProvider
@@ -18,20 +18,26 @@ import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
 import kotlinx.android.synthetic.main.activity_upload_summary.*
 import kotlinx.android.synthetic.main.custom_action_bar.view.*
 import net.danlew.android.joda.JodaTimeAndroid
-import org.joda.time.DateTime
 import no.aspit.capture.R
 import no.aspit.capture.common.*
+import no.aspit.capture.common.Constant.Companion.EDITABLE_MODE
+import no.aspit.capture.common.Constant.Companion.IMAGE_DATA_OBJECT
+import no.aspit.capture.common.Constant.Companion.IMAGE_PATH
 import no.aspit.capture.extention.readString
+import no.aspit.capture.net.Service
 import no.aspit.capture.ui.imagecapture.CapturedImageDetailsAddActivity
 import no.aspit.capture.ui.imagecapture.CapturedImageFurtherOptionSelectionActivity
+import org.joda.time.DateTime
+import retrofit2.Call
+import retrofit2.Callback
 import java.io.File
 import java.io.IOException
-import java.io.Serializable
 
 class UploadsActivity : BaseActivity(), CustomActionBar.ActionBarListener {
 
     companion object {
         const val REQUEST_TAKE_PHOTO: Int = 1
+        const val REQUEST_IMAGE_FURTHER_ACTIONS = 2
         var list: MutableList<UploadDataModel> = arrayListOf()
             private set
         var addedItemsCount: Int = 0
@@ -45,20 +51,14 @@ class UploadsActivity : BaseActivity(), CustomActionBar.ActionBarListener {
     lateinit var nothingToHereTextView: TextView
     private lateinit var mCurrentPhotoPath: String
     private lateinit var context: Context
+    private lateinit var uploadObject: UploadDataModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload_summary)
         JodaTimeAndroid.init(this)
         context = this
-
         fillPatientData()
-
-        var uploadDataObject: UploadDataModel? = intent?.extras?.get("upload_data_object") as? UploadDataModel
-        uploadDataObject?.let {
-            if (!list.contains(it)) list?.add(it)
-        }
-
         bottomNavigationBar = bottomNavigationViewUploadActivity
         imageTextView = nothingToSeeHereImageTextView
         nothingToHereTextView = nothingToSeeHereTextView
@@ -66,18 +66,28 @@ class UploadsActivity : BaseActivity(), CustomActionBar.ActionBarListener {
         recyclerView.hasFixedSize()
         recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
 
+        bottomNavigationBar.setOnNavigationItemSelectedListener {
+            selectedItem(it)
+        }
+
+        var adapter = UploadItemAdapter(list) { item: UploadDataModel -> partItemClicked(item) }
+        recyclerView.adapter = adapter
+
+        setUploadData(intent)
+    }
+
+    private fun setUploadData(intent: Intent?) {
+        var uploadDataModel: UploadDataModel? = (intent?.extras?.get(IMAGE_DATA_OBJECT) as? UploadDataModel)
+        uploadDataModel?.let {
+            if (it.status == UploadStatus.QUEUE.status) it.status = UploadStatus.UPLOADING.status
+            if (!list.contains(it)) list?.add(it)
+            uploadFile(it)
+        }
         if (list?.size != 0) {
             imageTextView.visibility = View.GONE
             nothingToHereTextView.visibility = View.GONE
         }
-
-        bottomNavigationBar.setOnNavigationItemSelectedListener {
-            selectedItem(it)
-        }
-        var adapter = UploadItemAdapter(list) { item: UploadDataModel -> partItemClicked(item) }
-        recyclerView.adapter = adapter
-
-
+        recyclerView.adapter?.notifyDataSetChanged()
     }
 
     private fun fillPatientData() {
@@ -88,8 +98,8 @@ class UploadsActivity : BaseActivity(), CustomActionBar.ActionBarListener {
 
     private fun partItemClicked(uploadDataModel: UploadDataModel) {
         var intent = Intent(this, CapturedImageDetailsAddActivity::class.java)
-        intent.putExtra("upload_object", uploadDataModel as Serializable)
-        intent.putExtra("editable", 0)
+        intent.putExtra("upload_object", uploadDataModel as? Parcelable)
+        intent.putExtra(EDITABLE_MODE, 0)
         startActivity(intent)
     }
 
@@ -140,15 +150,19 @@ class UploadsActivity : BaseActivity(), CustomActionBar.ActionBarListener {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
-        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == Activity.RESULT_OK) {
-            startImageDetails()
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == REQUEST_TAKE_PHOTO) {
+                startImageDetails()
+            } else if (requestCode == REQUEST_IMAGE_FURTHER_ACTIONS) {
+                setUploadData(intent)
+            }
         }
     }
 
     private fun startImageDetails() {
         val intent = Intent(this, CapturedImageFurtherOptionSelectionActivity::class.java)
-        intent.putExtra("image_file_path", mCurrentPhotoPath)
-        startActivity(intent)
+        intent.putExtra(IMAGE_PATH, mCurrentPhotoPath)
+        startActivityForResult(intent, REQUEST_IMAGE_FURTHER_ACTIONS)
     }
 
     override fun onClose() {
@@ -161,6 +175,26 @@ class UploadsActivity : BaseActivity(), CustomActionBar.ActionBarListener {
         finish()
     }
 
+    private fun uploadFile(uploadDataModel: UploadDataModel) {
+        Service(this@UploadsActivity, Utils().getAccessToken(this)?.authToken!!).uploadFile(
+                uploadDataModel?.upload,
+                object : Callback<String> {
+                    override fun onResponse(call: Call<String>?, response: retrofit2.Response<String>?) {
+                        if (response?.isSuccessful!!) {
+                            uploadDataModel?.status = UploadStatus.COMPLETED.status
+                        } else {
+                            uploadDataModel?.status = UploadStatus.FAILED.status
+                        }
+                        recyclerView.adapter?.notifyDataSetChanged()
+                    }
+
+                    override fun onFailure(call: Call<String>?, t: Throwable?) {
+                        uploadDataModel?.status = UploadStatus.FAILED.status
+                        recyclerView.adapter?.notifyDataSetChanged()
+                    }
+                }
+        )
+    }
 
     private fun giveWarning() {
         var alertDialogBuilder = AlertDialog.Builder(this)

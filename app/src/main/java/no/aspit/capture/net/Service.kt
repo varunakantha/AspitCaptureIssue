@@ -1,6 +1,7 @@
 package no.aspit.capture.net
 
 import android.content.Context
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import no.aspit.capture.BuildConfig
@@ -25,6 +26,7 @@ class Service(var context: Context, var accessToken: String = "") {
         if (accessToken.isNotEmpty()) {
             client = OkHttpClient.Builder()
                     .cache(Cache(context.cacheDir, cacheSize))
+                    .addNetworkInterceptor(StethoInterceptor())
                     .addInterceptor { chain ->
                         val original = chain.request()
                         val requestBuilder = original.newBuilder()
@@ -98,24 +100,9 @@ class Service(var context: Context, var accessToken: String = "") {
         generateService(BuildConfig.API_BASE_URL)?.userApi()!!
                 .enqueue(callback)
     }
-    //endregion
 
-    fun uploadFile(
-            nin: String,
-            data: String,
-            assetType: String,
-            title: String,
-            note: String,
-            comment: String,
-            callback: Callback<String>
-    ) {
-        generateService(BuildConfig.API_BASE_URL)?.uploadFile(
-                nin,
-                data,
-                assetType,
-                title,
-                note,
-                comment
-        )!!.enqueue(callback)
+    fun uploadFile(upload: Upload, callback: Callback<String>) {
+        generateService(BuildConfig.API_BASE_URL)?.uploadFile(upload)!!.enqueue(callback)
     }
+    //endregion
 }

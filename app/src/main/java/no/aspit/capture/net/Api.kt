@@ -19,15 +19,8 @@ interface Api {
 
     @GET("api/user")
     fun userApi(
-    ) : Call<String>
+    ): Call<String>
 
-    @FormUrlEncoded
     @PUT("api/upload")
-    fun uploadFile(
-            @Field("nin") nin: String,
-            @Field("data") data: String,
-            @Field("assetType") assetType: String,
-            @Field("title") title: String,
-            @Field("note") note: String,
-            @Field("comment") comment: String): Call<String>
+    fun uploadFile(@Body upload: Upload): Call<String>
 }
