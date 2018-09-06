@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    buildToolsVersion "27.0.3"
+    buildToolsVersion "28.0.2"
     compileSdkVersion 28
     defaultConfig {
         applicationId "no.aspit.capture"
@@ -60,7 +60,7 @@ android {
     }
 }
 
-configurations.all {
+/*configurations.all {
     resolutionStrategy.eachDependency { DependencyResolveDetails details ->
         def requested = details.requested
         if (requested.group == "com.android.support") {
@@ -69,7 +69,7 @@ configurations.all {
             }
         }
     }
-}
+}*/
 
 kotlin {
     experimental {
