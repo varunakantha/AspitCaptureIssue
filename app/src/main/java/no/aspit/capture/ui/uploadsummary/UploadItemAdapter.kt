@@ -50,7 +50,7 @@ class UploadItemAdapter(var list: List<UploadDataModel>, private val itemClickLi
             }
             val formatter = builder.printZeroNever().toFormatter()
             val elapsed = formatter.print(period)
-//            timeUploaded.text = elapsed
+            timeUploaded.text = elapsed
 
             var fileType = model.fileType
             when (fileType) {

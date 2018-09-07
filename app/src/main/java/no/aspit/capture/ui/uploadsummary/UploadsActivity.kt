@@ -10,7 +10,6 @@ import android.provider.MediaStore
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,6 +23,7 @@ import no.aspit.capture.common.Constant.Companion.EDITABLE_MODE
 import no.aspit.capture.common.Constant.Companion.IMAGE_DATA_OBJECT
 import no.aspit.capture.common.Constant.Companion.IMAGE_PATH
 import no.aspit.capture.extention.readString
+import no.aspit.capture.extention.showDialog
 import no.aspit.capture.net.Service
 import no.aspit.capture.ui.imagecapture.CapturedImageDetailsAddActivity
 import no.aspit.capture.ui.imagecapture.CapturedImageFurtherOptionSelectionActivity
@@ -44,14 +44,12 @@ class UploadsActivity : BaseActivity(), CustomActionBar.ActionBarListener {
             private set
     }
 
-
     lateinit var bottomNavigationBar: BottomNavigationViewEx
     lateinit var recyclerView: RecyclerView
     lateinit var imageTextView: TextView
     lateinit var nothingToHereTextView: TextView
     private lateinit var mCurrentPhotoPath: String
     private lateinit var context: Context
-    private lateinit var uploadObject: UploadDataModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,6 +95,14 @@ class UploadsActivity : BaseActivity(), CustomActionBar.ActionBarListener {
     }
 
     private fun partItemClicked(uploadDataModel: UploadDataModel) {
+        if (uploadDataModel.status == UploadStatus.FAILED.status) {
+            retryUploading(uploadDataModel)
+        } else if ((uploadDataModel.status == UploadStatus.UPLOADING.status) or (uploadDataModel.status == UploadStatus.COMPLETED.status)) {
+            goToDetailsView(uploadDataModel)
+        }
+    }
+
+    val goToDetailsView: (UploadDataModel) -> Unit = { uploadDataModel ->
         var intent = Intent(this, CapturedImageDetailsAddActivity::class.java)
         intent.putExtra("upload_object", uploadDataModel as? Parcelable)
         intent.putExtra(EDITABLE_MODE, 0)
@@ -196,14 +202,33 @@ class UploadsActivity : BaseActivity(), CustomActionBar.ActionBarListener {
         )
     }
 
+    val uploadData: (UploadDataModel) -> Unit = { uploadDataModel ->
+        Service(this@UploadsActivity, Utils().getAccessToken(this)?.authToken!!).uploadFile(
+                uploadDataModel?.upload,
+                object : Callback<String> {
+                    override fun onResponse(call: Call<String>?, response: retrofit2.Response<String>?) {
+                        if (response?.isSuccessful!!) {
+                            uploadDataModel?.status = UploadStatus.COMPLETED.status
+                        } else {
+                            uploadDataModel?.status = UploadStatus.FAILED.status
+                        }
+                        recyclerView.adapter?.notifyDataSetChanged()
+                    }
+
+                    override fun onFailure(call: Call<String>?, t: Throwable?) {
+                        uploadDataModel?.status = UploadStatus.FAILED.status
+                        recyclerView.adapter?.notifyDataSetChanged()
+                    }
+                }
+        )
+    }
+
     private fun giveWarning() {
-        var alertDialogBuilder = AlertDialog.Builder(this)
-        alertDialogBuilder.setTitle("Warning")
-                .setMessage("Upload not complete")
-                .setPositiveButton("Ok") { _, _ -> clearDataAndGoBack() }
-                .setNegativeButton("Cancel") { _, _ -> return@setNegativeButton }
-        var dialog = alertDialogBuilder.create()
-        dialog.show()
+        showDialog("Warning", "Upload not completed", "Ok", "Cancel") { clearDataAndGoBack() }
+    }
+
+    private fun retryUploading(uploadDataModel: UploadDataModel) {
+        showDialog("Retry", "Retry Again?", "Retry", "Cancel", uploadDataModel, uploadData, goToDetailsView)
     }
 
     override fun onBackPressed() {

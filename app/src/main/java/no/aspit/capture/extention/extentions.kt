@@ -5,8 +5,10 @@ import android.app.Activity
 import android.content.Context
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.google.android.material.snackbar.Snackbar
 import no.aspit.capture.common.Constant
+import no.aspit.capture.ui.uploadsummary.UploadDataModel
 
 inline fun Activity.snack(message: String, duration: Int = Toast.LENGTH_SHORT) {
     this.findViewById<View>(android.R.id.content)?.let {
@@ -48,4 +50,24 @@ inline fun Context.deleteStringAsync(key: String) {
     this.getSharedPreferences(Constant.LOCAL_STORAGE_NAME, Context.MODE_PRIVATE).edit()
             .putString(key, "")
             .apply()
+}
+
+fun Context.showDialog(title: String, message: String, positive: String, negative: String, positiveCallback: () -> Unit) {
+    var alertDialogBuilder = AlertDialog.Builder(this)
+    alertDialogBuilder.setTitle(title)
+            .setMessage(message)
+            .setPositiveButton(positive) { _, _ -> positiveCallback() }
+            .setNegativeButton(negative) { _, _ -> return@setNegativeButton }
+    var dialog = alertDialogBuilder.create()
+    dialog.show()
+}
+
+fun Context.showDialog(title: String, message: String, positive: String, negative: String, uploadDataModel: UploadDataModel, positiveCallback: (UploadDataModel) -> Unit, negativeCallBack: (UploadDataModel) -> Unit) {
+    var alertDialogBuilder = AlertDialog.Builder(this)
+    alertDialogBuilder.setTitle(title)
+            .setMessage(message)
+            .setPositiveButton(positive) { _, _ -> positiveCallback(uploadDataModel) }
+            .setNegativeButton(negative) { _, _ -> negativeCallBack(uploadDataModel) }
+    var dialog = alertDialogBuilder.create()
+    dialog.show()
 }

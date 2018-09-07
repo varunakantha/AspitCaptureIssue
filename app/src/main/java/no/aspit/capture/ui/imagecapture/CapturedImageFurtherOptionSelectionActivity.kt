@@ -70,12 +70,11 @@ class CapturedImageFurtherOptionSelectionActivity : BaseActivity(), CustomAction
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
-            if(requestCode  ==REQUEST_IMAGE_CONFIRM){
+            if (requestCode == REQUEST_IMAGE_CONFIRM) {
                 val intent = Intent()
                 intent.putExtra(Constant.IMAGE_DATA_OBJECT, data?.getParcelableExtra(Constant.IMAGE_DATA_OBJECT) as Parcelable)
                 setResult(Activity.RESULT_OK, intent)
                 finish()
-
             }
         }
     }
