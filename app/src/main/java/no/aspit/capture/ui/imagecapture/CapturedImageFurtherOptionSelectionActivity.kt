@@ -75,8 +75,8 @@ class CapturedImageFurtherOptionSelectionActivity : BaseActivity(), CustomAction
                 intent.putExtra(Constant.IMAGE_DATA_OBJECT, data?.getParcelableExtra(Constant.IMAGE_DATA_OBJECT) as Parcelable)
                 setResult(Activity.RESULT_OK, intent)
                 finish()
+
             }
         }
     }
-
 }
