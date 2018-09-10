@@ -6,6 +6,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
 
     <application
         android:name=".AspitCaptureApplication"
@@ -28,21 +31,33 @@
 
         <activity
             android:name=".ui.patientlookup.PatientLookUpActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ui.imagecapture.CapturedImageDetailsAddActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".ui.imagecapture.CapturedImageFurtherOptionSelectionActivity" />
-        <activity android:name=".ui.uploadsummary.UploadsActivity" />
-        <activity android:name=".ui.patientlookup.PatientSummaryActivity" />
-        <activity android:name=".ui.startscreen.SplashActivity">
+        <activity
+            android:name=".ui.imagecapture.CapturedImageFurtherOptionSelectionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.uploadsummary.UploadsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.patientlookup.PatientSummaryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.startscreen.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.startscreen.RegistrationActivity">
+        <activity
+            android:name=".ui.startscreen.RegistrationActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 

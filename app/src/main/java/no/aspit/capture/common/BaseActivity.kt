@@ -1,11 +1,11 @@
 package no.aspit.capture.common
 
 import android.annotation.SuppressLint
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import com.microsoft.appcenter.analytics.Analytics
 import no.aspit.capture.R
 import no.aspit.capture.extention.deleteString
 
@@ -16,13 +16,14 @@ open class BaseActivity : AppCompatActivity() {
         var TAG = this::class.java.simpleName
     }
 
+
     private var loadingView: View? = null
     lateinit var authenticator: Authenticator
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        Analytics.trackEvent(this::class.java.simpleName)
         authenticator = Authenticator(this)
     }
 
