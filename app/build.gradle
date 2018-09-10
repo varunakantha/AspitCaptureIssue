@@ -123,4 +123,8 @@ dependencies {
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
 
 
+    implementation "com.microsoft.appcenter:appcenter-analytics:1.8.0"
+    implementation "com.microsoft.appcenter:appcenter-crashes:1.8.0"
+
+
 }
