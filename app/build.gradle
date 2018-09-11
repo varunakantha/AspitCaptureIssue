@@ -133,3 +133,9 @@ dependencies {
     implementation "com.android.support:multidex:2.0.0"
 
 }
+
+repositories {
+    maven {
+        url "http://download.dynamsoft.com/maven/dcs"
+    }
+}
