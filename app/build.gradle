@@ -17,6 +17,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary true
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -60,16 +61,7 @@ android {
     }
 }
 
-/*configurations.all {
-    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-        def requested = details.requested
-        if (requested.group == "com.android.support") {
-            if (!requested.name.startsWith("multidex")) {
-                details.useVersion "26.+"
-            }
-        }
-    }
-}*/
+configurations.all { resolutionStrategy.force 'com.squareup.okhttp3:okhttp:3.10.0' }
 
 kotlin {
     experimental {
@@ -126,5 +118,11 @@ dependencies {
     implementation "com.microsoft.appcenter:appcenter-analytics:1.8.0"
     implementation "com.microsoft.appcenter:appcenter-crashes:1.8.0"
 
+    implementation ('com.dynamsoft:dynamsoftcamerasdk:2.0'){
+        exclude group: 'com.squareup.okhttp3', module:'okhttp3'
+    }
+    implementation 'androidx.exifinterface:exifinterface:1.0.0-rc02'
+
+    implementation "com.android.support:multidex:2.0.0"
 
 }

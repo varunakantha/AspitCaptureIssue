@@ -5,6 +5,8 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Base64
+import android.util.Base64.DEFAULT
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -26,22 +28,21 @@ import no.aspit.capture.net.Upload
 import no.aspit.capture.ui.uploadsummary.UploadDataModel
 import no.aspit.capture.ui.uploadsummary.UploadFileType
 import java.io.File
-import java.util.*
 
-lateinit var imagePath: String
-lateinit var uploadDataObject: UploadDataModel
-lateinit var file: File
-
-lateinit var capturedImage: ImageView
-lateinit var imageTitle: TextView
-lateinit var imageTitleEdit: EditText
-lateinit var imageCommentEdit: EditText
-lateinit var confirmButton: Button
-lateinit var lock: ImageView
-var editableMode: Int = 0
-var patientNin = ""
 
 class CapturedImageDetailsAddActivity : BaseActivity(), CustomActionBar.ActionBarListener {
+    private lateinit var imagePath: String
+    private lateinit var uploadDataObject: UploadDataModel
+    lateinit var file: File
+
+    private lateinit var capturedImage: ImageView
+    private lateinit var imageTitle: TextView
+    private lateinit var imageTitleEdit: EditText
+    private lateinit var imageCommentEdit: EditText
+    private lateinit var confirmButton: Button
+    private lateinit var lock: ImageView
+    private var editableMode: Int = 0
+    private var patientNin = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,7 +103,7 @@ class CapturedImageDetailsAddActivity : BaseActivity(), CustomActionBar.ActionBa
 
     @SuppressLint("NewApi")
     private fun addToUploadList() {
-        val base64: String = Base64.getEncoder().encodeToString(file?.readBytes())
+        val base64: String = Base64.encodeToString(file?.readBytes(), DEFAULT)
         var upload = Upload(patientNin, base64, TYPE_IMAGE, imageTitleEdit.text.toString(), "", imageCommentEdit.text.toString())
         var uploadObject = UploadDataModel(upload, file.name, 3, 1, file)
 
