@@ -61,7 +61,13 @@ android {
     }
 }
 
-configurations.all { resolutionStrategy.force 'com.squareup.okhttp3:okhttp:3.10.0' }
+configurations.all {
+    //add this to prevent dex issue due to com.dynamsoft:dynamsoftcamerasdk
+    all*.exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+    all*.exclude group: 'com.squareup.okio', module: 'okio'
+
+    resolutionStrategy.force 'com.squareup.okhttp3:okhttp:3.10.0'
+}
 
 kotlin {
     experimental {
@@ -119,7 +125,8 @@ dependencies {
     implementation "com.microsoft.appcenter:appcenter-crashes:1.8.0"
 
     implementation ('com.dynamsoft:dynamsoftcamerasdk:2.0'){
-        exclude group: 'com.squareup.okhttp3', module:'okhttp3'
+        exclude group: 'com.squareup.okhttp3', module:'okhttp'
+        exclude group: 'com.squareup.okio', module:'okio'
     }
     implementation 'androidx.exifinterface:exifinterface:1.0.0-rc02'
 
