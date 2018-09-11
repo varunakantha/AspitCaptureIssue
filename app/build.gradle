@@ -124,9 +124,9 @@ dependencies {
     implementation "com.microsoft.appcenter:appcenter-analytics:1.8.0"
     implementation "com.microsoft.appcenter:appcenter-crashes:1.8.0"
 
-    implementation ('com.dynamsoft:dynamsoftcamerasdk:2.0'){
-        exclude group: 'com.squareup.okhttp3', module:'okhttp'
-        exclude group: 'com.squareup.okio', module:'okio'
+    implementation('com.dynamsoft:dynamsoftcamerasdk:2.0') {
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+        exclude group: 'com.squareup.okio', module: 'okio'
     }
     implementation 'androidx.exifinterface:exifinterface:1.0.0-rc02'
 

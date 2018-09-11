@@ -25,6 +25,7 @@ import no.aspit.capture.common.Constant.Companion.IMAGE_PATH
 import no.aspit.capture.extention.readString
 import no.aspit.capture.extention.showDialog
 import no.aspit.capture.net.Service
+import no.aspit.capture.ui.documentcapture.DocumentCaptureActivity
 import no.aspit.capture.ui.imagecapture.CapturedImageDetailsAddActivity
 import no.aspit.capture.ui.imagecapture.CapturedImageFurtherOptionSelectionActivity
 import org.joda.time.DateTime
@@ -114,6 +115,12 @@ class UploadsActivity : BaseActivity(), CustomActionBar.ActionBarListener {
             R.id.photo_upload -> {
                 it.isChecked = true
                 dispatchTakePictureIntent()
+            }
+
+            R.id.document_upload -> {
+                it.isChecked = true
+                var intent = Intent(applicationContext, DocumentCaptureActivity::class.java)
+                startActivity(intent)
             }
         }
         return false
