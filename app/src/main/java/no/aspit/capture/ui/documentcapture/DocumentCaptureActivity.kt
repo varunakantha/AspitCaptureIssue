@@ -187,7 +187,7 @@ class DocumentCaptureActivity : AppCompatActivity(), DcsViewListener {
 
         if (photoFile != null) {
             imageURI = FileProvider.getUriForFile(this,
-                    "aspit.test.com.myapp1",
+                    "no.aspit.capture.fileprovider",
                     photoFile)
 
         }
