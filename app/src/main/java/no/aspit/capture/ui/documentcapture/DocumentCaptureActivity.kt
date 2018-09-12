@@ -52,7 +52,7 @@ class DocumentCaptureActivity : AppCompatActivity(), DcsViewListener {
         setContentView(R.layout.activity_document_capture)
 
         try {
-            DcsView.setLicense(applicationContext, "your license number")
+            DcsView.setLicense(applicationContext, "51660FA191135B398823A49B2DCEF4ADCDB42D82")
         } catch (e: DcsValueNotValidException) {
             e.printStackTrace()
         }
@@ -169,7 +169,7 @@ class DocumentCaptureActivity : AppCompatActivity(), DcsViewListener {
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         try {
-            DcsView.setLicense(applicationContext, "your license number")
+            DcsView.setLicense(applicationContext, "51660FA191135B398823A49B2DCEF4ADCDB42D82")
         } catch (e: DcsValueNotValidException) {
             e.printStackTrace()
         }
